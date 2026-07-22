@@ -240,15 +240,71 @@ canvas{
 <script>
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
-let w, h, particles = [], connections = [];
+let w, h, particles = [], humanDots = [];
 const GOLD = [201, 168, 76];
 const ICE = [126, 184, 218];
+const WARM = [220, 180, 140];
 const N = 60;
 
 function resize() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
+  buildHuman();
 }
+
+function buildHuman() {
+  humanDots = [];
+  const cx = w * 0.82;
+  const baseY = h * 0.5;
+  const scale = Math.min(w, h) * 0.0028;
+
+  const bodyParts = [
+    ...ellipsePoints(cx, baseY - 72*scale, 11*scale, 13*scale, 28),
+    ...ellipsePoints(cx, baseY - 35*scale, 14*scale, 28*scale, 40),
+    ...ellipsePoints(cx - 20*scale, baseY - 20*scale, 6*scale, 32*scale, 18),
+    ...ellipsePoints(cx + 20*scale, baseY - 20*scale, 6*scale, 32*scale, 18),
+    ...ellipsePoints(cx - 8*scale, baseY + 25*scale, 7*scale, 35*scale, 20),
+    ...ellipsePoints(cx + 8*scale, baseY + 25*scale, 7*scale, 35*scale, 20),
+    {x: cx - 2*scale, y: baseY - 87*scale},
+    {x: cx + 2*scale, y: baseY - 87*scale},
+    {x: cx, y: baseY - 90*scale},
+  ];
+
+  for (const pt of bodyParts) {
+    humanDots.push({
+      homeX: pt.x,
+      homeY: pt.y,
+      x: pt.x + (Math.random() - 0.5) * 300,
+      y: pt.y + (Math.random() - 0.5) * 300,
+      r: 0.6 + Math.random() * 1.2,
+      phase: Math.random() * Math.PI * 2,
+      freq: 0.004 + Math.random() * 0.006,
+      delay: Math.random() * 2
+    });
+  }
+}
+
+function ellipsePoints(cx, cy, rx, ry, n) {
+  const pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2;
+    const jx = (Math.random() - 0.5) * rx * 0.6;
+    const jy = (Math.random() - 0.5) * ry * 0.4;
+    pts.push({
+      x: cx + Math.cos(a) * rx + jx,
+      y: cy + Math.sin(a) * ry + jy
+    });
+    if (Math.random() > 0.4) {
+      const ir = 0.3 + Math.random() * 0.6;
+      pts.push({
+        x: cx + Math.cos(a) * rx * ir + (Math.random() - 0.5) * 4,
+        y: cy + Math.sin(a) * ry * ir + (Math.random() - 0.5) * 4
+      });
+    }
+  }
+  return pts;
+}
+
 resize();
 window.addEventListener('resize', resize);
 
@@ -269,8 +325,11 @@ for (let i = 0; i < N; i++) {
 let scrollY = 0;
 window.addEventListener('scroll', () => { scrollY = window.scrollY; });
 
+let startTime = performance.now();
+
 function draw(t) {
   ctx.clearRect(0, 0, w, h);
+  const elapsed = (t - startTime) / 1000;
 
   const visible = particles.filter(p => {
     const sy = p.y - scrollY;
@@ -303,24 +362,80 @@ function draw(t) {
   for (const p of particles) {
     const sy = p.y - scrollY;
     if (sy < -100 || sy > h + 100) continue;
-
     p.x += p.vx;
     p.phase += p.freq;
     const pulse = 0.5 + 0.5 * Math.sin(p.phase);
     const alpha = 0.15 + pulse * 0.25;
-
     if (p.x < 0) p.x = w;
     if (p.x > w) p.x = 0;
-
     ctx.beginPath();
     ctx.arc(p.x, sy, p.r, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${p.color[0]},${p.color[1]},${p.color[2]},${alpha})`;
     ctx.fill();
   }
 
+  const formProgress = Math.min(1, Math.max(0, elapsed - 1.5) / 3);
+  const ease = formProgress < 1 ? 1 - Math.pow(1 - formProgress, 3) : 1;
+
+  if (scrollY < h * 0.8) {
+    for (const d of humanDots) {
+      const delayedProgress = Math.min(1, Math.max(0, (elapsed - 1.5 - d.delay) / 2.5));
+      const ep = 1 - Math.pow(1 - delayedProgress, 3);
+
+      d.x = d.x + (d.homeX - d.x) * (ep * 0.08);
+      d.y = d.y + (d.homeY - d.y) * (ep * 0.08);
+
+      d.phase += d.freq;
+      const breath = Math.sin(d.phase) * 1.2 * ep;
+      const drawX = d.x + breath * 0.3;
+      const drawY = d.y + breath;
+
+      const pulse = 0.5 + 0.5 * Math.sin(d.phase * 1.3);
+      const alpha = ep * (0.2 + pulse * 0.35);
+
+      const gMix = ep;
+      const r = WARM[0] * gMix + ICE[0] * (1 - gMix);
+      const g = WARM[1] * gMix + ICE[1] * (1 - gMix);
+      const b2 = WARM[2] * gMix + ICE[2] * (1 - gMix);
+
+      ctx.beginPath();
+      ctx.arc(drawX, drawY, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r|0},${g|0},${b2|0},${alpha})`;
+      ctx.fill();
+
+      if (ep > 0.7 && d.r > 1) {
+        ctx.beginPath();
+        ctx.arc(drawX, drawY, d.r * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${GOLD[0]},${GOLD[1]},${GOLD[2]},${alpha * 0.04})`;
+        ctx.fill();
+      }
+    }
+
+    if (ease > 0.6) {
+      const cx = w * 0.82;
+      const baseY = h * 0.5;
+      const scale = Math.min(w, h) * 0.0028;
+      const heartX = cx;
+      const heartY = baseY - 42 * scale;
+      const heartPulse = 0.5 + 0.5 * Math.sin(elapsed * 2.5);
+      const heartR = (3 + heartPulse * 2) * scale;
+      const heartAlpha = (ease - 0.6) * 2.5 * (0.15 + heartPulse * 0.2);
+
+      ctx.beginPath();
+      ctx.arc(heartX, heartY, heartR, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${GOLD[0]},${GOLD[1]},${GOLD[2]},${heartAlpha})`;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(heartX, heartY, heartR * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${GOLD[0]},${GOLD[1]},${GOLD[2]},${heartAlpha * 0.15})`;
+      ctx.fill();
+    }
+  }
+
   requestAnimationFrame(draw);
 }
-draw(0);
+draw(performance.now());
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
