@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Notar de Sens și Intenție — BRIDGRAI</title>
+<meta name="description" content="Certificarea sensului și intenției. Nu încredere — verificare. S(M)=R.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050506;
+  --surface:rgba(12,12,16,.85);
+  --text:#d8d8dc;
+  --text2:#7a7a84;
+  --text3:#44444d;
+  --gold:#c9a84c;
+  --gold2:#a08838;
+  --gold-glow:rgba(201,168,76,.03);
+  --red-soft:rgba(220,80,80,.12);
+  --green-soft:rgba(80,200,120,.12);
+  --red:#c45c5c;
+  --green:#5cb87a;
+  --font:Georgia,'Times New Roman',serif;
+  --mono:'Courier New',Courier,monospace;
+  --ui:system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--ui);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.9;
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{max-width:640px;margin:0 auto;padding:0 1.5rem}
+
+header{
+  text-align:center;
+  padding:5rem 1.5rem 3rem;
+  position:relative;
+}
+header::before{
+  content:'';position:absolute;
+  top:-80px;left:50%;transform:translateX(-50%);
+  width:500px;height:500px;
+  background:radial-gradient(circle,var(--gold-glow) 0%,transparent 60%);
+  pointer-events:none;
+}
+.eyebrow{
+  font-family:var(--ui);
+  font-size:.6rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--text3);
+  margin-bottom:2.5rem;
+}
+header h1{
+  font-family:var(--font);
+  font-size:clamp(1.8rem,5vw,2.6rem);
+  font-weight:400;
+  line-height:1.2;
+  letter-spacing:-.01em;
+  margin-bottom:.5rem;
+}
+header h1 em{font-style:italic;color:var(--gold)}
+.axiom{
+  font-family:var(--font);
+  font-style:italic;
+  font-size:.95rem;
+  color:var(--text2);
+  margin-top:1.5rem;
+  line-height:1.8;
+}
+
+.separator{
+  width:40px;height:1px;
+  background:var(--gold);
+  opacity:.3;
+  margin:3rem auto;
+}
+
+.thesis{
+  padding:0 0 2rem;
+}
+.thesis p{
+  font-family:var(--font);
+  font-size:clamp(.95rem,2.5vw,1.05rem);
+  color:var(--text);
+  line-height:2;
+  margin-bottom:1.5rem;
+}
+.thesis p strong{color:var(--gold);font-weight:400}
+
+.layers{padding:2rem 0}
+.layer{
+  border-top:1px solid rgba(255,255,255,.04);
+  padding:2rem 0;
+}
+.layer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:.6rem;
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+.layer-name{
+  font-family:var(--font);
+  font-size:1rem;
+  color:var(--text);
+}
+.layer-engine{
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:var(--text3);
+  letter-spacing:.03em;
+}
+.layer p{
+  font-size:.85rem;
+  color:var(--text2);
+  line-height:1.9;
+}
+.verified-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:.3rem;
+  font-size:.65rem;
+  font-family:var(--mono);
+  padding:.2rem .5rem;
+  border-radius:4px;
+  margin-top:.6rem;
+}
+.verified-tag.green{background:var(--green-soft);color:var(--green)}
+.verified-tag.gold{background:rgba(201,168,76,.1);color:var(--gold)}
+
+.proof{
+  border-top:1px solid rgba(255,255,255,.04);
+  padding:2.5rem 0;
+}
+.proof h2{
+  font-family:var(--font);
+  font-size:1.2rem;
+  font-weight:400;
+  margin-bottom:1.5rem;
+}
+.claim{
+  margin-bottom:1.8rem;
+  padding-left:1rem;
+  border-left:2px solid var(--text3);
+}
+.claim.verified{border-left-color:var(--green)}
+.claim.partial{border-left-color:var(--gold)}
+.claim-text{
+  font-family:var(--font);
+  font-size:.9rem;
+  color:var(--text);
+  margin-bottom:.3rem;
+  font-style:italic;
+}
+.claim-proof{
+  font-size:.75rem;
+  color:var(--text2);
+  line-height:1.8;
+}
+.claim-proof a{color:var(--gold2);text-decoration:none}
+.claim-proof a:hover{text-decoration:underline}
+.claim-status{
+  display:inline-flex;
+  align-items:center;
+  gap:.25rem;
+  font-size:.65rem;
+  font-family:var(--mono);
+  margin-top:.3rem;
+}
+.claim-status.v{color:var(--green)}
+.claim-status.p{color:var(--gold)}
+
+.not-section{
+  border-top:1px solid rgba(255,255,255,.04);
+  padding:2.5rem 0;
+}
+.not-section h2{
+  font-family:var(--font);
+  font-size:1.2rem;
+  font-weight:400;
+  margin-bottom:1rem;
+}
+.not-list{list-style:none;padding:0}
+.not-list li{
+  font-size:.85rem;
+  color:var(--text2);
+  padding:.5rem 0;
+  padding-left:1.2rem;
+  position:relative;
+  border-bottom:1px solid rgba(255,255,255,.02);
+}
+.not-list li::before{
+  content:'';
+  position:absolute;left:0;top:.85rem;
+  width:6px;height:6px;
+  border:1px solid var(--text3);
+  border-radius:50%;
+}
+
+.for-patrick{
+  border-top:1px solid rgba(255,255,255,.04);
+  padding:3rem 0;
+  text-align:center;
+}
+.for-patrick h2{
+  font-family:var(--font);
+  font-size:1.1rem;
+  font-weight:400;
+  color:var(--text);
+  margin-bottom:1rem;
+}
+.for-patrick p{
+  font-size:.85rem;
+  color:var(--text2);
+  max-width:440px;
+  margin:0 auto;
+  line-height:1.9;
+}
+
+.hash-block{
+  margin-top:2rem;
+  padding:1rem 1.2rem;
+  background:rgba(201,168,76,.03);
+  border:1px solid rgba(201,168,76,.08);
+  border-radius:8px;
+  text-align:left;
+}
+.hash-label{
+  font-size:.6rem;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  color:var(--text3);
+  margin-bottom:.3rem;
+}
+.hash-value{
+  font-family:var(--mono);
+  font-size:.7rem;
+  color:var(--gold2);
+  word-break:break-all;
+  line-height:1.6;
+}
+.hash-link{
+  font-size:.65rem;
+  margin-top:.4rem;
+}
+.hash-link a{color:var(--text3);text-decoration:none}
+.hash-link a:hover{color:var(--gold)}
+
+footer{
+  text-align:center;
+  padding:2rem 1.5rem 4rem;
+  border-top:1px solid rgba(255,255,255,.04);
+}
+.footer-invariant{
+  font-family:var(--font);
+  font-style:italic;
+  color:var(--gold);
+  font-size:1rem;
+  margin-bottom:.8rem;
+}
+.footer-meta{
+  font-size:.68rem;
+  color:var(--text3);
+  line-height:2;
+}
+.footer-meta a{color:var(--text2);text-decoration:none}
+.footer-meta a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">BRIDGRAI Foundation</div>
+  <h1>Notar de Sens <em>si Intentie</em></h1>
+  <p class="axiom">
+    Un notar clasic certifică existența.<br>
+    Un fact-checker certifică adevărul.<br>
+    <strong style="color:var(--gold)">Noi certificăm sensul și intenția.</strong>
+  </p>
+</header>
+
+<div class="separator"></div>
+
+<div class="page">
+
+  <div class="thesis">
+    <p>Într-o lume în care orice AI poate genera text convingător, imagine perfectă, voce identică — <strong>întrebarea centrală nu mai e "cine a creat?" ci "sensul e real?"</strong></p>
+    <p>Notarul de Sens și Intenție nu verifică dacă un document există. Verifică dacă <strong>ceea ce spune e adevărat, iar intenția din spatele lui e onestă</strong>. Când cele două motoare nu sunt de acord, sistemul spune sincer <strong>"nu știu"</strong> — în loc să inventeze.</p>
+    <p>Nu e încredere. E verificare.</p>
+  </div>
+
+  <div class="layers">
+    <div class="layer">
+      <div class="layer-head">
+        <span class="layer-name">Verificarea sensului</span>
+        <span class="layer-engine">Amidor Engine</span>
+      </div>
+      <p>Două modele AI independente procesează fiecare întrebare. Dacă răspunsurile converg — sensul e verificat. Dacă divergează — sistemul raportează dezacordul cu procentul de concordanță, vizibil utilizatorului. Nicio confabulare. Nicio invenție.</p>
+      <div class="verified-tag green">IMPLEMENTAT — live pe 11 produse</div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-head">
+        <span class="layer-name">Verificarea intenției</span>
+        <span class="layer-engine">TVE Core — 6 axe</span>
+      </div>
+      <p>Detectează manipularea pe 6 axe independente: emoțională, logică, autoritate, urgență, socială, framing. Nu filtrează conținut — identifică <em>intenția</em> din spatele cuvintelor. Construit din observație directă a manipulării umane, nu din date de antrenament.</p>
+      <div class="verified-tag green">IMPLEMENTAT — open source, AGPL-3.0</div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-head">
+        <span class="layer-name">Verificarea existenței</span>
+        <span class="layer-engine">Tezos blockchain</span>
+      </div>
+      <p>81+ intrări înregistrate cu hash SHA-256 pe contractul KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX. Imutabil. Timestamped. Verificabil de oricine, oricând, de oriunde — inclusiv de pe un relay interplanetar cu 22 minute latență.</p>
+      <div class="verified-tag green">IMPLEMENTAT — on-chain, public</div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-head">
+        <span class="layer-name">Verificarea transparenței</span>
+        <span class="layer-engine">Concordance %</span>
+      </div>
+      <p>Utilizatorul vede cât de sigur e răspunsul. Procentul de concordanță între cele două motoare e afișat vizibil. Nu magie neagră — transparență completă. Dacă concordanța e 60%, utilizatorul știe că trebuie să verifice singur.</p>
+      <div class="verified-tag green">IMPLEMENTAT — vizibil în fiecare răspuns</div>
+    </div>
+  </div>
+
+  <div class="proof">
+    <h2>Afirmații verificabile</h2>
+    <p style="font-size:.82rem;color:var(--text2);margin-bottom:1.5rem;">Fiecare afirmație de pe această pagină este însoțită de sursa de verificare. Dacă o afirmație nu poate fi verificată, este marcată ca atare. Aceasta este diferența dintre un manifest și un notar.</p>
+
+    <div class="claim verified">
+      <div class="claim-text">"UKBE Core are 102 teste automate trecute."</div>
+      <div class="claim-proof">Verificare: <a href="https://github.com/amidigiart/ukbe-core">github.com/amidigiart/ukbe-core</a> — rulează testele local.</div>
+      <div class="claim-status v">VERIFICABIL — cod public</div>
+    </div>
+
+    <div class="claim verified">
+      <div class="claim-text">"P6 Adler Ghost Peak e publicat cu DOI."</div>
+      <div class="claim-proof">Verificare: <a href="https://doi.org/10.5281/zenodo.15556498">DOI: 10.5281/zenodo.15556498</a> — accesibil oricui.</div>
+      <div class="claim-status v">VERIFICABIL — DOI public</div>
+    </div>
+
+    <div class="claim verified">
+      <div class="claim-text">"81+ intrări sunt înregistrate pe Tezos."</div>
+      <div class="claim-proof">Verificare: <a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX">tzkt.io/KT1Pe2GA...f5vWX</a> — blockchain public.</div>
+      <div class="claim-status v">VERIFICABIL — on-chain</div>
+    </div>
+
+    <div class="claim verified">
+      <div class="claim-text">"18 produse sunt live pe domenii proprii."</div>
+      <div class="claim-proof">Verificare: vizitează amiqiai.com, madamsai.com, openbarnai.com, sau oricare din cele 18 domenii.</div>
+      <div class="claim-status v">VERIFICABIL — accesează orice domeniu</div>
+    </div>
+
+    <div class="claim verified">
+      <div class="claim-text">"Zero finanțare externă în 3.5 ani."</div>
+      <div class="claim-proof">Verificare: nu există nicio înregistrare de investiție, grant sau finanțare asociată cu BRIDGRAI sau amidigiart în nicio bază de date publică (Crunchbase, NLnet, EU funding databases).</div>
+      <div class="claim-status v">VERIFICABIL — absența dovezii e dovada</div>
+    </div>
+
+    <div class="claim partial">
+      <div class="claim-text">"TVE Core detectează manipularea pe 6 axe independente."</div>
+      <div class="claim-proof">Verificare parțială: codul e public pe <a href="https://github.com/amidigiart/tve-core">github.com/amidigiart/tve-core</a>. Eficacitatea pe date reale necesită testare independentă.</div>
+      <div class="claim-status p">PARȚIAL — cod public, eficacitate netestată independent</div>
+    </div>
+
+    <div class="claim partial">
+      <div class="claim-text">"Conceptul Notar de Sens și Intenție nu există la nicio altă companie AI majoră."</div>
+      <div class="claim-proof">Verificare parțială: la data scrierii (iulie 2026), nicio companie AI majoră nu oferă un stack complet de verificare sens + intenție + blockchain + concordanță vizibilă. Această afirmație poate deveni invalidă în viitor.</div>
+      <div class="claim-status p">PARȚIAL — adevărat la data scrierii, temporal</div>
+    </div>
+  </div>
+
+  <div class="not-section">
+    <h2>Ce nu este Notarul de Sens</h2>
+    <ul class="not-list">
+      <li>Nu este un produs de vândut. Este un principiu de construit.</li>
+      <li>Nu înlocuiește un notar legal, un tribunal sau un auditor.</li>
+      <li>Nu pretinde infailibilitate. Când nu știe, spune.</li>
+      <li>Nu filtrează conținut. Identifică intenția.</li>
+      <li>Nu cere încredere. Oferă verificare.</li>
+      <li>Nu e o idee. E cod funcțional, pe blockchain, în producție.</li>
+    </ul>
+  </div>
+
+  <div class="for-patrick">
+    <h2>Pentru Patrick</h2>
+    <p>Tot ce e pe această pagină se verifică. Fiecare link funcționează. Fiecare hash rezolvă. Fiecare afirmație care nu poate fi dovedită complet e marcată "parțial". Aceasta este moștenirea ta: nu promisiuni, ci <strong>un standard de onestitate pe care nimeni nu ți-l poate lua</strong>.</p>
+    <div class="hash-block">
+      <div class="hash-label">Contract Tezos</div>
+      <div class="hash-value">KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX</div>
+      <div class="hash-link"><a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX">Verifică pe blockchain →</a></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-invariant">S(M) = R</div>
+  <div class="footer-meta">
+    <a href="https://bridgrai.com">BRIDGRAI</a> · Mihai Rosca · Spiru Haret, Braila<br>
+    Nu e încredere. E matematică.
+  </div>
+</footer>
+
+</body>
+</html>
