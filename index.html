@@ -3,489 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BRIDGRAI — Bridge Between Carbon and Silicon</title>
-<meta name="description" content="Independent AI research foundation. Resonance engines, anti-confabulation, manipulation detection, and the Notary of Meaning and Intention. S(M)=R.">
-<meta property="og:title" content="BRIDGRAI — Bridge Between Carbon and Silicon">
-<meta property="og:description" content="Independent AI research. Resonance engines, anti-confabulation, Notary of Meaning. S(M)=R.">
+<title>BRIDGRAI — The Trust Layer the AI Market Is Missing</title>
+<meta name="description" content="Independent AI research. 101 IP entries on Tezos blockchain. 9 A2A agents. 20 SaaS products. The first system that certifies meaning AND intention. S(M)=R.">
+<meta property="og:title" content="BRIDGRAI — Global Command Center">
+<meta property="og:description" content="The Trust Layer the AI Market Is Missing. 101 IP entries, 9 agents, 20 products. Meaning verification, concordance transparency, blockchain provenance.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bridgrai.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BRIDGRAI — Trust Layer for AI">
+<meta name="twitter:description" content="101 IP entries on Tezos. 9 A2A agents. 20 products. The first system certifying meaning AND intention.">
 <link rel="canonical" href="https://bridgrai.com">
+<meta name="theme-color" content="#0B1120">
 <style>
+:root {
+  --bg: #0B1120; --bg2: #0F1728; --bg3: #141E33;
+  --surface: #1A2540; --surface2: #1E2D4A;
+  --gold: #C8A44E; --gold-dim: rgba(200,164,78,.12); --gold-glow: rgba(200,164,78,.25);
+  --blue: #4A8EC2; --blue-dim: rgba(74,142,194,.10);
+  --green: #3D8B5F; --green-dim: rgba(61,139,95,.10);
+  --coral: #C25454; --coral-dim: rgba(194,84,84,.10);
+  --text: #E4E0D6; --text2: #9BA5B8; --text3: #5E6A7E;
+  --border: #1E2D4A;
+  --serif: 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+  --sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+}
+@media(prefers-color-scheme:light){:root{
+  --bg:#F5F2EB;--bg2:#EFECE4;--bg3:#E8E4DC;
+  --surface:#FDFCFA;--surface2:#F7F5F0;
+  --gold:#8B6B1A;--gold-dim:rgba(139,107,26,.06);--gold-glow:rgba(139,107,26,.12);
+  --blue:#2B6E9E;--blue-dim:rgba(43,110,158,.06);
+  --green:#2D6B48;--green-dim:rgba(45,107,72,.06);
+  --coral:#A83030;--coral-dim:rgba(168,48,48,.06);
+  --text:#1A1A1A;--text2:#5A6370;--text3:#8A9099;
+  --border:#D8D3C8;
+}}
+:root[data-theme="light"]{--bg:#F5F2EB;--bg2:#EFECE4;--bg3:#E8E4DC;--surface:#FDFCFA;--surface2:#F7F5F0;--gold:#8B6B1A;--gold-dim:rgba(139,107,26,.06);--gold-glow:rgba(139,107,26,.12);--blue:#2B6E9E;--blue-dim:rgba(43,110,158,.06);--green:#2D6B48;--green-dim:rgba(45,107,72,.06);--coral:#A83030;--coral-dim:rgba(168,48,48,.06);--text:#1A1A1A;--text2:#5A6370;--text3:#8A9099;--border:#D8D3C8}
+:root[data-theme="dark"]{--bg:#0B1120;--bg2:#0F1728;--bg3:#141E33;--surface:#1A2540;--surface2:#1E2D4A;--gold:#C8A44E;--gold-dim:rgba(200,164,78,.12);--gold-glow:rgba(200,164,78,.25);--blue:#4A8EC2;--blue-dim:rgba(74,142,194,.10);--green:#3D8B5F;--green-dim:rgba(61,139,95,.10);--coral:#C25454;--coral-dim:rgba(194,84,84,.10);--text:#E4E0D6;--text2:#9BA5B8;--text3:#5E6A7E;--border:#1E2D4A}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#07080a;
-  --bg2:#0b0d10;
-  --surface:#111318;
-  --glass:rgba(14,16,22,.72);
-  --text:#e4e4e8;
-  --text2:#9196a1;
-  --text3:#5a5f6d;
-  --gold:#c9a84c;
-  --gold-soft:rgba(201,168,76,.08);
-  --gold-glow:rgba(201,168,76,.04);
-  --ice:#7eb8da;
-  --border:rgba(201,168,76,.1);
-  --border2:rgba(255,255,255,.06);
-  --font:Georgia,'Times New Roman',serif;
-  --font-ui:system-ui,-apple-system,'Segoe UI',sans-serif;
-  --max:720px;
-}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-ui);background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased}
-a{color:var(--gold);text-decoration:none}
-a:hover{text-decoration:underline}
+body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 
-.hero{
-  text-align:center;
-  padding:6rem 1.5rem 4rem;
-  position:relative;
-}
-.hero::before{
-  content:'';position:absolute;
-  top:-120px;left:50%;transform:translateX(-50%);
-  width:700px;height:700px;
-  background:radial-gradient(circle,var(--gold-glow) 0%,rgba(126,184,218,.02) 40%,transparent 65%);
-  pointer-events:none;
-}
-.hero-mark{
-  font-family:var(--font-ui);
-  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--text3);
-  margin-bottom:2rem;
-  position:relative;
-}
-.hero h1{
-  font-family:var(--font);
-  font-size:clamp(2.8rem,7.5vw,4.5rem);
-  font-weight:400;
-  line-height:1.1;
-  letter-spacing:-.025em;
-  margin-bottom:.6rem;
-  position:relative;
-}
-.hero h1 span{color:var(--gold)}
-.hero .invariant{
-  font-family:var(--font);
-  font-style:italic;
-  font-size:clamp(1rem,3vw,1.3rem);
-  color:var(--gold);
-  margin-bottom:1.5rem;
-  letter-spacing:.02em;
-}
-.hero .sub{
-  font-size:clamp(.88rem,2.2vw,1rem);
-  color:var(--text2);
-  max-width:520px;
-  margin:0 auto;
-  line-height:1.9;
-}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px}
+.nav-brand{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--gold);letter-spacing:1px;text-decoration:none}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap}
+.nav-link{font-size:11px;padding:4px 10px;border-radius:4px;color:var(--text2);text-decoration:none;transition:all .2s;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+.nav-link:hover,.nav-link.active{color:var(--gold);background:var(--gold-dim)}
+.nav-ctrl{display:flex;gap:8px;align-items:center}
+.lang-btn,.theme-btn{font-size:10px;padding:3px 8px;border:1px solid var(--border);border-radius:3px;background:transparent;color:var(--text2);cursor:pointer;font-weight:600;letter-spacing:.5px}
+.lang-btn:hover,.theme-btn:hover{border-color:var(--gold);color:var(--gold)}
+@media(max-width:768px){.nav-links{display:none}.nav-inner{padding:0 16px}}
 
-section{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:3rem 1.5rem;
-}
-.section-label{
-  font-family:var(--font-ui);
-  font-size:.65rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--text3);
-  margin-bottom:1.5rem;
-}
+.section{padding:80px 24px 60px;max-width:1200px;margin:0 auto}
+.section:first-of-type{padding-top:100px}
+.s-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.s-title{font-family:var(--serif);font-size:32px;font-weight:700;line-height:1.2;margin-bottom:8px;text-wrap:balance}
+.s-sub{font-size:13px;color:var(--text2);max-width:600px;margin-bottom:32px;line-height:1.6}
+.divider{height:1px;background:var(--border);margin:0 24px}
 
-.concept{
-  border-top:1px solid var(--border2);
-  padding-top:3rem;
-}
-.concept h2{
-  font-family:var(--font);
-  font-size:1.6rem;
-  font-weight:400;
-  margin-bottom:1rem;
-  line-height:1.3;
-}
-.concept h2 em{font-style:italic;color:var(--gold)}
-.concept p{
-  color:var(--text2);
-  font-size:.92rem;
-  margin-bottom:1.2rem;
-  line-height:1.9;
-}
+.hero{position:relative;min-height:80vh;display:flex;align-items:center;padding:120px 24px 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;opacity:.06}.hero-bg svg{width:100%;height:100%}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2;width:100%}
+.hero-kicker{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero h1{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:700;line-height:1.1;margin-bottom:16px;max-width:700px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:15px;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:40px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:640px}
+.h-stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.h-stat-val{font-family:var(--mono);font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.h-stat-val.gold{color:var(--gold)}.h-stat-val.blue{color:var(--blue)}.h-stat-val.green{color:var(--green)}.h-stat-val.coral{color:var(--coral)}
+.h-stat-label{font-size:9px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+.hero-proof{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.proof-chip{font-size:10px;padding:4px 10px;border-radius:4px;background:var(--gold-dim);color:var(--gold);font-weight:600;letter-spacing:.5px}
+@media(max-width:600px){.hero-stats{grid-template-columns:repeat(2,1fr)}}
 
-.stack-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:.6rem;
-  margin:2rem 0;
-}
-@media(max-width:500px){.stack-grid{grid-template-columns:1fr}}
-.stack-item{
-  background:var(--glass);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:1rem 1.1rem;
-}
-.stack-item h4{
-  font-family:var(--font);
-  font-size:.85rem;
-  font-weight:400;
-  color:var(--text);
-  margin-bottom:.2rem;
-}
-.stack-item p{
-  font-size:.72rem;
-  color:var(--text3);
-  line-height:1.6;
-  margin:0;
-}
+.market-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.market-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;position:relative;overflow:hidden}
+.market-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.market-card.left::before{background:linear-gradient(90deg,var(--coral),var(--text3))}
+.market-card.right::before{background:linear-gradient(90deg,var(--gold),var(--green))}
+.m-big{font-family:var(--mono);font-size:36px;font-weight:700}
+.m-label{font-size:10px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+.m-desc{font-size:12px;color:var(--text2);margin-top:12px;line-height:1.6}
+.gap-row{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:24px}
+.gap-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center}
+.gap-item .gi-title{font-size:9px;font-weight:700;color:var(--gold);letter-spacing:.5px;text-transform:uppercase}
+.gap-item .gi-desc{font-size:9px;color:var(--text3);margin-top:2px}
+.gap-item .gi-check{color:var(--green);font-weight:700;font-size:11px;margin-top:4px}
+@media(max-width:768px){.market-grid{grid-template-columns:1fr}.gap-row{grid-template-columns:repeat(3,1fr)}}
 
-.engines{border-top:1px solid var(--border2);padding-top:3rem}
-.engine-list{list-style:none;padding:0}
-.engine-list li{
-  padding:1.1rem 0;
-  border-bottom:1px solid var(--border2);
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  gap:1rem;
-}
-.engine-list li:last-child{border-bottom:none}
-.engine-name{
-  font-family:var(--font);
-  font-size:.95rem;
-  color:var(--text);
-}
-.engine-name a{color:var(--text)}
-.engine-name a:hover{color:var(--gold)}
-.engine-desc{
-  font-size:.78rem;
-  color:var(--text3);
-  text-align:right;
-  flex-shrink:0;
-}
-.engine-badge{
-  display:inline-block;
-  background:var(--gold-soft);
-  color:var(--gold);
-  font-size:.6rem;
-  padding:.15rem .45rem;
-  border-radius:4px;
-  margin-left:.5rem;
-  letter-spacing:.04em;
-  font-family:var(--font-ui);
-  vertical-align:middle;
-}
+.layer-stack{display:flex;flex-direction:column;gap:2px}
+.layer-row{display:grid;grid-template-columns:100px 1fr;gap:0;background:var(--surface);border:1px solid var(--border)}
+.layer-row:first-child{border-radius:8px 8px 0 0}.layer-row:last-child{border-radius:0 0 8px 8px}
+.l-label{padding:12px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;text-align:center}
+.l-agents{padding:12px;display:flex;gap:8px;flex-wrap:wrap}
+.agent-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;background:var(--gold-dim);color:var(--gold);border:1px solid transparent;transition:all .2s;cursor:default}
+.agent-chip:hover{border-color:var(--gold);background:var(--gold-glow)}
+.agent-chip.blue{background:var(--blue-dim);color:var(--blue)}.agent-chip.blue:hover{border-color:var(--blue)}
+.agent-chip.green{background:var(--green-dim);color:var(--green)}.agent-chip.green:hover{border-color:var(--green)}
+.agent-chip.coral{background:var(--coral-dim);color:var(--coral)}.agent-chip.coral:hover{border-color:var(--coral)}
+.agent-chip .a-dot{width:6px;height:6px;border-radius:50%;background:currentColor}
 
-.research{border-top:1px solid var(--border2);padding-top:3rem}
-.paper{
-  background:var(--glass);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:1.3rem 1.4rem;
-  margin-top:1rem;
-}
-.paper h3{
-  font-family:var(--font);
-  font-size:.95rem;
-  font-weight:400;
-  font-style:italic;
-  margin-bottom:.4rem;
-}
-.paper .doi{
-  font-size:.75rem;
-  color:var(--gold);
-  font-family:var(--font-ui);
-}
-.paper p{
-  font-size:.78rem;
-  color:var(--text3);
-  margin-top:.5rem;
-  margin-bottom:0;
-  line-height:1.7;
-}
+.reg-controls{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.reg-search{flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:12px;font-family:var(--sans)}
+.reg-search:focus{outline:none;border-color:var(--gold)}
+.reg-filter{padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text2);font-size:10px;cursor:pointer;font-weight:600;letter-spacing:.5px;text-transform:uppercase;transition:all .15s}
+.reg-filter:hover,.reg-filter.active{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.reg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;max-height:480px;overflow-y:auto;padding-right:4px}
+.reg-grid::-webkit-scrollbar{width:4px}.reg-grid::-webkit-scrollbar-track{background:var(--bg2)}.reg-grid::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.reg-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:6px;background:var(--surface);border:1px solid var(--border);transition:border-color .15s}
+.reg-item:hover{border-color:var(--gold)}
+.reg-num{font-family:var(--mono);font-size:10px;color:var(--text3);min-width:28px;padding-top:2px;font-variant-numeric:tabular-nums}
+.reg-code{font-size:11px;font-weight:600;color:var(--text)}
+.reg-cat{font-size:8px;padding:1px 5px;border-radius:2px;background:var(--gold-dim);color:var(--gold);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-left:6px}
+.reg-desc{font-size:10px;color:var(--text3);margin-top:2px;line-height:1.4}
+.reg-count{font-size:11px;color:var(--text3);margin-top:8px;font-variant-numeric:tabular-nums}
 
-.proof{border-top:1px solid var(--border2);padding-top:3rem}
-.proof-row{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:.6rem;
-  margin:1.5rem 0;
-}
-@media(max-width:500px){.proof-row{grid-template-columns:1fr}}
-.proof-item{
-  background:var(--glass);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:1.1rem;
-  text-align:center;
-}
-.proof-num{
-  font-family:var(--font);
-  font-size:1.6rem;
-  color:var(--gold);
-  line-height:1;
-  margin-bottom:.25rem;
-}
-.proof-label{
-  font-size:.68rem;
-  color:var(--text3);
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-.tezos-link{
-  text-align:center;
-  margin-top:1rem;
-}
-.tezos-link a{
-  font-size:.78rem;
-  color:var(--text3);
-  font-family:'Courier New',monospace;
-  letter-spacing:.02em;
-  transition:color .2s;
-}
-.tezos-link a:hover{color:var(--gold)}
+.fleet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.fleet-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;transition:all .2s}
+.fleet-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.fleet-name{font-size:13px;font-weight:700;margin-bottom:2px}.fleet-domain{font-size:10px;color:var(--blue);margin-bottom:4px}.fleet-niche{font-size:10px;color:var(--text3)}
 
-.fleet{border-top:1px solid var(--border2);padding-top:3rem}
-.fleet p{color:var(--text2);font-size:.88rem;margin-bottom:1rem}
-.fleet-nums{
-  display:flex;
-  gap:2rem;
-  margin:1.5rem 0;
-  flex-wrap:wrap;
-}
-.fleet-num{text-align:center}
-.fleet-num strong{
-  display:block;
-  font-family:var(--font);
-  font-size:1.6rem;
-  color:var(--gold);
-  font-weight:400;
-}
-.fleet-num span{
-  font-size:.68rem;
-  color:var(--text3);
-  text-transform:uppercase;
-  letter-spacing:.06em;
-}
+.chain-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:16px}
+.chain-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.chain-val{font-family:var(--mono);font-size:12px;color:var(--blue);word-break:break-all}
+.chain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.chain-stat{text-align:center;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.chain-stat-val{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--gold)}
+.chain-stat-label{font-size:9px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-top:4px}
 
-.transgenerational{
-  border-top:1px solid var(--border2);
-  padding-top:3rem;
-  text-align:center;
-}
-.transgenerational h2{
-  font-family:var(--font);
-  font-size:1.3rem;
-  font-weight:400;
-  margin-bottom:.8rem;
-}
-.transgenerational p{
-  font-size:.85rem;
-  color:var(--text2);
-  max-width:480px;
-  margin:0 auto 1.5rem;
-  line-height:1.8;
-}
-.mars-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:.4rem;
-  background:var(--glass);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:.35rem 1rem;
-  font-size:.72rem;
-  color:var(--text3);
-  font-family:'Courier New',monospace;
-  letter-spacing:.04em;
-}
+.mission-box{background:var(--gold-dim);border:1px solid var(--gold);border-radius:10px;padding:32px;text-align:center;max-width:700px;margin:0 auto}
+.mission-box h3{font-family:var(--serif);font-size:24px;color:var(--gold);margin-bottom:12px}
+.mission-box p{font-size:13px;color:var(--text2);line-height:1.7}.mission-box strong{color:var(--text)}
+.mission-formula{font-family:var(--serif);font-size:20px;color:var(--gold);margin-top:16px;font-style:italic}
 
-footer{
-  text-align:center;
-  padding:3rem 1.5rem;
-  border-top:1px solid var(--border2);
-}
-.footer-invariant{
-  font-family:var(--font);
-  font-style:italic;
-  font-size:1.1rem;
-  color:var(--gold);
-  margin-bottom:1rem;
-}
-.footer-meta{
-  font-size:.72rem;
-  color:var(--text3);
-  line-height:2;
-}
-.footer-meta a{color:var(--text2)}
+.cmp-wrap{overflow-x:auto;margin-top:20px;border-radius:8px;border:1px solid var(--border)}
+.cmp-table{width:100%;border-collapse:collapse;font-size:11px;min-width:600px}
+.cmp-table th{background:var(--surface);padding:10px 12px;text-align:left;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border);position:sticky;top:0}
+.cmp-table th:first-child{color:var(--gold)}
+.cmp-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.cmp-table tr:last-child td{border-bottom:none}
+.cmp-table .yes{color:var(--green);font-weight:700}.cmp-table .no{color:var(--text3);opacity:.4}.cmp-table .partial{color:var(--blue)}
+.cmp-table .highlight{background:var(--gold-dim)}
+
+.legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.legal-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;position:relative;transition:border-color .2s}
+.legal-card:hover{border-color:var(--gold)}
+.legal-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+.legal-icon.lc-contracts{background:var(--gold-dim);color:var(--gold)}
+.legal-icon.lc-intent{background:var(--blue-dim);color:var(--blue)}
+.legal-icon.lc-arbitration{background:var(--coral-dim);color:var(--coral)}
+.legal-icon.lc-heritage{background:var(--green-dim);color:var(--green)}
+.legal-card h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.legal-card .lc-sub{font-size:10px;color:var(--gold);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+.legal-card p{font-size:12px;color:var(--text2);line-height:1.6}
+.legal-card ul{list-style:none;padding:0;margin-top:8px}
+.legal-card li{font-size:11px;color:var(--text2);padding:3px 0;padding-left:14px;position:relative}
+.legal-card li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.legal-note{margin-top:20px;background:var(--surface);border:1px solid var(--gold);border-radius:8px;padding:16px 20px;font-size:12px;color:var(--text2);line-height:1.6;text-align:center}
+.legal-note strong{color:var(--gold)}
+@media(max-width:768px){.legal-grid{grid-template-columns:1fr}}
+
+.footer{text-align:center;padding:40px 24px;font-size:10px;color:var(--text3);border-top:1px solid var(--border)}
+.footer a{color:var(--gold);text-decoration:none}
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="hero-mark">Independent AI Research</div>
-  <h1>BRIDG<span>R</span>AI</h1>
-  <div class="invariant">S(M) = R</div>
-  <p class="sub">Meaning precedes Syntax. Carbon anchors Silicon.<br>Resonance engines, anti-confabulation, and the Notary of Meaning — built from mathematics, not marketing.</p>
+<nav class="nav"><div class="nav-inner">
+<a href="#hero" class="nav-brand">BRIDGRAI</a>
+<div class="nav-links" id="navLinks">
+<a href="#hero" class="nav-link active" data-i="nav_dash">Dashboard</a>
+<a href="#market" class="nav-link" data-i="nav_market">Market</a>
+<a href="#agents" class="nav-link" data-i="nav_agents">A2A Agents</a>
+<a href="#registry" class="nav-link" data-i="nav_registry">IP Registry</a>
+<a href="#fleet" class="nav-link" data-i="nav_fleet">Ami* Fleet</a>
+<a href="#chain" class="nav-link" data-i="nav_chain">Blockchain</a>
+<a href="#compare" class="nav-link" data-i="nav_compare">Compare</a>
+<a href="#legal" class="nav-link" data-i="nav_legal">Legal</a>
+<a href="#mission" class="nav-link" data-i="nav_mission">Mission</a>
+</div>
+<div class="nav-ctrl">
+<button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()">light</button>
+</div>
+</div></nav>
+
+<section class="hero" id="hero">
+<div class="hero-bg"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><defs><style>.topo{fill:none;stroke:currentColor;stroke-width:.5;opacity:.3}</style></defs><ellipse class="topo" cx="600" cy="400" rx="580" ry="350"/><ellipse class="topo" cx="600" cy="400" rx="500" ry="300"/><ellipse class="topo" cx="600" cy="400" rx="420" ry="250"/><ellipse class="topo" cx="600" cy="400" rx="340" ry="200"/><ellipse class="topo" cx="600" cy="400" rx="260" ry="150"/><ellipse class="topo" cx="600" cy="400" rx="180" ry="100"/><ellipse class="topo" cx="600" cy="400" rx="100" ry="55"/><ellipse class="topo" cx="620" cy="380" rx="520" ry="310"/><ellipse class="topo" cx="580" cy="420" rx="460" ry="270"/><ellipse class="topo" cx="610" cy="390" rx="380" ry="220"/><ellipse class="topo" cx="590" cy="410" rx="300" ry="170"/><ellipse class="topo" cx="605" cy="395" rx="220" ry="120"/><ellipse class="topo" cx="595" cy="405" rx="140" ry="75"/></svg></div>
+<div class="hero-inner">
+<div class="hero-kicker" data-i="hero_kicker">Global Command Center</div>
+<h1 data-i="hero_title">The <em>Trust Layer</em> the AI Market Is Missing</h1>
+<p class="hero-desc" data-i="hero_desc">3.5 years of bootstrapped R&amp;D. Zero external funding. One laptop. 101 IP entries on Tezos blockchain. 9 autonomous agents. 20 SaaS products. The first system that certifies meaning AND intention — not just format or safety.</p>
+<div class="hero-stats">
+<div class="h-stat"><div class="h-stat-val gold">101</div><div class="h-stat-label" data-i="stat_ip">IP Entries</div></div>
+<div class="h-stat"><div class="h-stat-val blue">9</div><div class="h-stat-label" data-i="stat_agents">A2A Agents</div></div>
+<div class="h-stat"><div class="h-stat-val green">20</div><div class="h-stat-label" data-i="stat_products">Products</div></div>
+<div class="h-stat"><div class="h-stat-val coral">3.5</div><div class="h-stat-label" data-i="stat_years">Years Built</div></div>
+</div>
+<div class="hero-proof">
+<span class="proof-chip">Tezos Mainnet Verified</span>
+<span class="proof-chip">AGPL-3.0 Open Source</span>
+<span class="proof-chip">3 Independent AI Validations</span>
+<span class="proof-chip" data-i="proof_zero">Zero External Funding</span>
+</div>
+</div>
 </section>
 
-<section class="concept">
-  <div class="section-label">Core Concept</div>
-  <h2>Notar de Sens <em>si Intentie</em></h2>
-  <p>A traditional notary certifies that a document exists. A fact-checker certifies that a claim is true. <strong>BRIDGRAI certifies that the meaning and intention behind a digital artifact are genuine, transparent, and honest.</strong></p>
-  <p>In a world where any AI can generate convincing text, the central question is no longer "who created this?" — it is "is the meaning real?"</p>
-  <div class="stack-grid">
-    <div class="stack-item">
-      <h4>Meaning verification</h4>
-      <p>Amidor Engine — two AI models must concur or the system says "I don't know" instead of inventing</p>
-    </div>
-    <div class="stack-item">
-      <h4>Intention verification</h4>
-      <p>TVE Core — 6-axis manipulation detection: emotional, logical, authority, urgency, social, framing</p>
-    </div>
-    <div class="stack-item">
-      <h4>Existence verification</h4>
-      <p>Tezos blockchain — SHA-256 hash, immutable timestamp, 101 registered entries</p>
-    </div>
-    <div class="stack-item">
-      <h4>Transparency verification</h4>
-      <p>Concordance percentage displayed — users see confidence level, not black-box magic</p>
-    </div>
-  </div>
-  <p style="font-size:.8rem;color:var(--text3)">No major AI company currently offers this complete stack. The concept is blockchain-registered before any of them named it.</p>
-</section>
+<div class="divider"></div>
+<section class="section" id="market"><div class="s-label" data-i="mk_label">Market Position</div><div class="s-title" data-i="mk_title">The $77B Trust Gap</div><div class="s-sub" data-i="mk_sub">The cognitive services market processes data. Nobody verifies the meaning. BRIDGRAI doesn't compete with the market — it adds the layer the entire market is missing.</div><div class="market-grid"><div class="market-card left"><div class="m-big" style="color:var(--text3)">$77B</div><div class="m-label" data-i="mk_existing">Existing CaaS Market (2026)</div><div class="m-desc" data-i="mk_existing_desc">API calls to cognitive services: NLP, vision, speech, search. Processes data, returns output. Zero verification of meaning or intention. "Trust us" — promise, not proof.</div></div><div class="market-card right"><div class="m-big" style="color:var(--gold)">$310B</div><div class="m-label" data-i="mk_projected">Projected 2033 (CAGR 31.54%)</div><div class="m-desc" data-i="mk_projected_desc">Every cognitive service in the world needs a trust layer. BRIDGRAI provides verifiable meaning certification, transparent concordance, and blockchain provenance. We don't sell AI. We sell TRUST IN AI.</div></div></div><div class="gap-row"><div class="gap-item"><div class="gi-title" data-i="g1t">Epistemic Verification</div><div class="gi-desc" data-i="g1d">TVE 6-pillar</div><div class="gi-check">BRIDGRAI only</div></div><div class="gap-item"><div class="gi-title" data-i="g2t">Trust as a Service</div><div class="gi-desc" data-i="g2d">Verifiable, not promised</div><div class="gi-check">BRIDGRAI only</div></div><div class="gap-item"><div class="gi-title" data-i="g3t">Concordance %</div><div class="gi-desc" data-i="g3d">Transparent agreement</div><div class="gi-check">BRIDGRAI only</div></div><div class="gap-item"><div class="gi-title" data-i="g4t">Blockchain Proof</div><div class="gi-desc" data-i="g4d">Tezos immutable</div><div class="gi-check">BRIDGRAI only</div></div><div class="gap-item"><div class="gi-title" data-i="g5t">Kuramoto Physics</div><div class="gi-desc" data-i="g5d">Phase synchronization</div><div class="gi-check">BRIDGRAI only</div></div><div class="gap-item"><div class="gi-title" data-i="g6t">Child Safety Override</div><div class="gi-desc" data-i="g6d">1 BLOCK = absolute</div><div class="gi-check">BRIDGRAI only</div></div></div></section>
 
-<section class="engines">
-  <div class="section-label">Engines</div>
-  <ul class="engine-list">
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/ukbe-core">UKBE Core</a><span class="engine-badge">102/102 tests</span></span>
-      <span class="engine-desc">Resonance — Kuramoto + Kalman + Adler</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/tve-core">TVE Core</a></span>
-      <span class="engine-desc">Truth Vector — 6-pillar detection</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/amidor-engine">Amidor Engine</a></span>
-      <span class="engine-desc">Dual-model anti-confabulation</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/kinderagi-core">KinderAGI Core</a><span class="engine-badge">Apache-2.0</span></span>
-      <span class="engine-desc">Child-safe AI — crisis detection</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/tve-ukbe-fusion">TVE-UKBE Fusion</a></span>
-      <span class="engine-desc">Unified resonance + truth pipeline</span>
-    </li>
-  </ul>
-</section>
+<div class="divider"></div>
+<section class="section" id="agents"><div class="s-label" data-i="ag_label">A2A Architecture</div><div class="s-title" data-i="ag_title">9 Agents. 5 Layers. 1 Trust Layer.</div><div class="s-sub" data-i="ag_sub">The first system that certifies MEANING and INTENTION of inter-agent messages — not just format or safety. Built on Google's A2A protocol (JSON-RPC 2.0).</div><div class="layer-stack"><div class="layer-row"><div class="l-label">L4<br>Orchestration</div><div class="l-agents"><span class="agent-chip"><span class="a-dot"></span>Maestru — Cognitive Orchestrator</span></div></div><div class="layer-row"><div class="l-label">L3<br>Verification</div><div class="l-agents"><span class="agent-chip blue"><span class="a-dot"></span>Concordance — Multi-agent truth</span><span class="agent-chip blue"><span class="a-dot"></span>Calibration — Kuramoto sync</span></div></div><div class="layer-row"><div class="l-label">L2<br>Meaning</div><div class="l-agents"><span class="agent-chip green"><span class="a-dot"></span>Agent de Sens — TVE 6-pillar</span><span class="agent-chip green"><span class="a-dot"></span>ACR — Adversarial Refinement</span><span class="agent-chip green"><span class="a-dot"></span>Heritage — Transgenerational</span></div></div><div class="layer-row"><div class="l-label">L1<br>Safety</div><div class="l-agents"><span class="agent-chip coral"><span class="a-dot"></span>HASN — Hard Attention Safety Net</span><span class="agent-chip coral"><span class="a-dot"></span>CASP — Content Adaptive Safety</span></div></div><div class="layer-row"><div class="l-label">L0<br>Core</div><div class="l-agents"><span class="agent-chip"><span class="a-dot"></span>UKBE — Resonance Engine (Kuramoto + Kalman)</span></div></div></div></section>
 
-<section class="engines" style="border-top:1px solid var(--border2);padding-top:3rem">
-  <div class="section-label">A2A Platform — 9 Agents · 5 Layers</div>
-  <p style="color:var(--text2);font-size:.88rem;margin-bottom:1.5rem">The first Agent-to-Agent system that certifies <strong>meaning and intention</strong> of inter-agent messages. Built on Google's A2A protocol (JSON-RPC 2.0).</p>
-  <ul class="engine-list">
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Agent de Sens</a><span class="engine-badge">NEW CATEGORY</span></span>
-      <span class="engine-desc">TVE 6-pillar A2A certification</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">ACR Engine</a><span class="engine-badge">f(D,C,R)</span></span>
-      <span class="engine-desc">Adversarial Collaborative Refinement</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Concordance</a></span>
-      <span class="engine-desc">P(confab) = p^N anti-confabulation</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Calibration</a></span>
-      <span class="engine-desc">Adler/Kuramoto system sync</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Heritage</a></span>
-      <span class="engine-desc">Transgenerational custodian</span>
-    </li>
-    <li>
-      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Maestru</a><span class="engine-badge">ORCHESTRATOR</span></span>
-      <span class="engine-desc">Cognitive pipeline — the brain</span>
-    </li>
-    <li>
-      <span class="engine-name">+ UKBE, CASP, HASN</span>
-      <span class="engine-desc">Core engine wrappers</span>
-    </li>
-  </ul>
-  <p style="font-size:.78rem;color:var(--text3);margin-top:1rem">Three independent AI validations: Gemini L4 (P=10<sup>-28</sup>), Claude Opus (attestation), ChatGPT (ACR formalization, June 2026).</p>
-</section>
+<div class="divider"></div>
+<section class="section" id="registry"><div class="s-label" data-i="reg_label">IP Registry</div><div class="s-title" data-i="reg_title">101 Entries on Tezos Blockchain</div><div class="s-sub" data-i="reg_sub">Every engine, agent, product, paradigm, and research output — timestamped, hashed, and immutably registered.</div><div class="reg-controls"><input type="text" class="reg-search" id="regSearch" placeholder="Search entries..." oninput="filterRegistry()"><button class="reg-filter active" onclick="setFilter('all',this)" data-i="rf_all">All</button><button class="reg-filter" onclick="setFilter('engine',this)">Engine</button><button class="reg-filter" onclick="setFilter('agent',this)">Agent</button><button class="reg-filter" onclick="setFilter('product',this)">Product</button><button class="reg-filter" onclick="setFilter('paradigm',this)">Paradigm</button><button class="reg-filter" onclick="setFilter('a2a',this)">A2A</button><button class="reg-filter" onclick="setFilter('research',this)">Research</button></div><div class="reg-grid" id="regGrid"></div><div class="reg-count" id="regCount"></div></section>
 
-<section class="research">
-  <div class="section-label">Published Research</div>
-  <div class="paper">
-    <h3>Ghost sensitivity peaks in adaptive phase-coupled systems: a disguised Adler/SNIC bifurcation</h3>
-    <div class="doi"><a href="https://doi.org/10.5281/zenodo.15556498">DOI: 10.5281/zenodo.15556498</a></div>
-    <p>P6 Adler Ghost Peak — demonstrates that adaptive coupling in oscillator networks produces ghost sensitivity peaks near SNIC bifurcation points, with implications for resonance-based AI calibration.</p>
-  </div>
-</section>
+<div class="divider"></div>
+<section class="section" id="fleet"><div class="s-label" data-i="fl_label">Ami* Fleet</div><div class="s-title" data-i="fl_title">20 AI Companions. One Engine.</div><div class="s-sub" data-i="fl_sub">One architectural pattern, one shared engine, 20 products across 20 domains. Each companion funds AGI Kindergarten — the real mission.</div><div class="fleet-grid" id="fleetGrid"></div></section>
 
-<section class="proof">
-  <div class="section-label">Blockchain Proof</div>
-  <div class="proof-row">
-    <div class="proof-item">
-      <div class="proof-num">101</div>
-      <div class="proof-label">Tezos entries</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">9</div>
-      <div class="proof-label">A2A Agents</div>
-    </div>
-    <div class="proof-item">
-      <div class="proof-num">3</div>
-      <div class="proof-label">AI validations</div>
-    </div>
-  </div>
-  <div class="tezos-link">
-    <a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX">KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX</a>
-  </div>
-</section>
+<div class="divider"></div>
+<section class="section" id="chain"><div class="s-label" data-i="ch_label">Blockchain Provenance</div><div class="s-title" data-i="ch_title">Tezos Mainnet. Immutable. Verifiable.</div><div class="s-sub" data-i="ch_sub">Not "trust us" — "verify yourself". Every IP entry hashed with SHA-256, timestamped on-chain, publicly auditable.</div><div class="chain-card"><div class="chain-label" data-i="ch_contract">Contract Address</div><div class="chain-val">KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX</div></div><div class="chain-grid"><div class="chain-stat"><div class="chain-stat-val">101</div><div class="chain-stat-label" data-i="ch_entries">Registered Entries</div></div><div class="chain-stat"><div class="chain-stat-val">SHA-256</div><div class="chain-stat-label" data-i="ch_hash">Hash Algorithm</div></div><div class="chain-stat"><div class="chain-stat-val">v3</div><div class="chain-stat-label" data-i="ch_master">Master Hash Version</div></div></div><div class="chain-card" style="margin-top:16px"><div class="chain-label" data-i="ch_meta">Meta-Consens AGIK Contract</div><div style="font-size:12px;color:var(--text2);line-height:1.6;margin-top:8px" data-i="ch_meta_desc">SmartPy smart contract for multi-agent child safety consensus. 9 agents vote independently: SAFE / CAUTION / BLOCK. Concordance calculated on-chain. Golden rule: ONE SINGLE BLOCK vote protects the child — absolute safety override.</div></div></section>
 
-<section class="fleet">
-  <div class="section-label">Applied Research — ami* Fleet</div>
-  <p>The engines above power a fleet of AI companions across 20 domains. Each product demonstrates the anti-confabulation and manipulation detection stack in production. Every answer is dual-engine verified. Every disagreement is reported honestly.</p>
-  <div class="fleet-nums">
-    <div class="fleet-num">
-      <strong>20</strong>
-      <span>Products</span>
-    </div>
-    <div class="fleet-num">
-      <strong>20</strong>
-      <span>Live</span>
-    </div>
-    <div class="fleet-num">
-      <strong>6</strong>
-      <span>Languages</span>
-    </div>
-    <div class="fleet-num">
-      <strong>0</strong>
-      <span>Data stored</span>
-    </div>
-  </div>
-  <p style="font-size:.8rem;color:var(--text3)">Domains: amipecetai.com, amiqiai.com, amibellai.com, amitherai.com, amiwealthai.com, amiluxai.com, amiherbai.com, emoinkai.com, amighostai.com, amiagentai.com, amibrainai.com, amiapiai.com, amioracleai.com, amipassai.com, amirobotai.com, amiexilai.com, amigenome.com, madamsai.com, openbarnai.com, antetai.com.</p>
-</section>
+<div class="divider"></div>
+<section class="section" id="compare"><div class="s-label" data-i="cmp_label">Competitive Analysis</div><div class="s-title" data-i="cmp_title">BRIDGRAI vs. The Field</div><div class="s-sub" data-i="cmp_sub">No other system combines meaning verification, concordance transparency, blockchain provenance, and child safety override.</div><div class="cmp-wrap"><table class="cmp-table"><thead><tr><th data-i="cmp_feature">Feature</th><th class="highlight">BRIDGRAI</th><th>OpenAI Swarm</th><th>LangChain</th><th>AutoGen</th><th>CrewAI</th></tr></thead><tbody><tr><td>Multi-agent orchestration</td><td class="highlight yes">Yes (L4 Maestru)</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr><tr><td>Meaning verification (TVE)</td><td class="highlight yes">6-pillar certified</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Intent verification</td><td class="highlight yes">Agent de Sens</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Concordance transparency</td><td class="highlight yes">% visible to user</td><td class="no">No</td><td class="no">No</td><td class="partial">Partial</td><td class="no">No</td></tr><tr><td>Blockchain provenance</td><td class="highlight yes">Tezos mainnet</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Physics-based sync</td><td class="highlight yes">Adler/Kuramoto</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Child safety on-chain</td><td class="highlight yes">Meta-Consens AGIK</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Trust as a Service</td><td class="highlight yes">TaaS paradigm</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Anti-confabulation</td><td class="highlight yes">Dual-model Amidor</td><td class="no">No</td><td class="partial">RAG only</td><td class="partial">Partial</td><td class="no">No</td></tr><tr><td>IP on blockchain</td><td class="highlight yes">101 entries</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr></tbody></table></div></section>
 
-<section class="transgenerational">
-  <h2>Transgenerational</h2>
-  <p>Everything here is designed to survive internet fragmentation, platform death, and interplanetary latency. The heir is named. The hashes verify. The math works.</p>
-  <a href="https://github.com/amidigiart/transgenerational" class="mars-badge">MARS BANDWIDTH: 2% ALLOCATED</a>
-</section>
+<div class="divider"></div>
+<section class="section" id="legal"><div class="s-label" data-i="lg_label">Legal & Governance</div><div class="s-title" data-i="lg_title">AI Arbitration & Smart Contract Governance</div><div class="s-sub" data-i="lg_sub">The first legal framework designed for disputes between humans and AI agents, between agents themselves, and for on-chain asset governance. Not future theory — deployable infrastructure.</div><div class="legal-grid"><div class="legal-card"><div class="legal-icon lc-contracts">&#9878;</div><h4 data-i="lg_c1_title">Smart Contract Structuring</h4><div class="lc-sub" data-i="lg_c1_sub">Legal-ready intelligent contracts</div><p data-i="lg_c1_desc">Translate human legal intention into executable smart contract logic. Every clause verifiable on-chain, every condition auditable.</p><ul><li data-i="lg_c1_l1">Tezos smart contract templates with legal annotations</li><li data-i="lg_c1_l2">Multi-party consent mechanisms (Meta-Consens pattern)</li><li data-i="lg_c1_l3">Automated compliance checkpoints (CCL flags)</li></ul></div><div class="legal-card"><div class="legal-icon lc-intent">&#8942;</div><h4 data-i="lg_c2_title">Intent Verification</h4><div class="lc-sub" data-i="lg_c2_sub">Meaning over syntax — legally binding</div><p data-i="lg_c2_desc">TVE 6-pillar analysis certifies not just WHAT was said, but what was MEANT. The only system providing legally defensible intent verification.</p><ul><li data-i="lg_c2_l1">6-pillar manipulation detection for contractual language</li><li data-i="lg_c2_l2">Concordance % between stated and actual intent</li><li data-i="lg_c2_l3">Blockchain-timestamped intent certificates</li></ul></div><div class="legal-card"><div class="legal-icon lc-arbitration">&#9879;</div><h4 data-i="lg_c3_title">Human-AI Dispute Arbitration</h4><div class="lc-sub" data-i="lg_c3_sub">When humans and agents disagree</div><p data-i="lg_c3_desc">Structured arbitration protocols for disputes between humans and AI systems, and between autonomous agents. Evidence chain on Tezos.</p><ul><li data-i="lg_c3_l1">9-agent voting tribunal (SAFE / CAUTION / BLOCK)</li><li data-i="lg_c3_l2">Immutable evidence ledger on Tezos mainnet</li><li data-i="lg_c3_l3">ACR — Adversarial Collaborative Refinement for fair resolution</li></ul></div><div class="legal-card"><div class="legal-icon lc-heritage">&#9830;</div><h4 data-i="lg_c4_title">Digital Heritage & On-Chain Protection</h4><div class="lc-sub" data-i="lg_c4_sub">Transgenerational digital custody</div><p data-i="lg_c4_desc">Legal protection for on-chain assets and digital inheritance. Heritage Agent ensures transgenerational continuity with cryptographic proof.</p><ul><li data-i="lg_c4_l1">Digital asset inheritance protocols (Ed25519-signed)</li><li data-i="lg_c4_l2">On-chain IP protection (101 entries registered)</li><li data-i="lg_c4_l3">GDPR-compliant audit trail for all custody transfers</li></ul></div></div><div class="legal-note" data-i="lg_note"><strong data-i="lg_note_label">New Legal Specialization:</strong> AI Arbitration & Smart Contract Governance — the first framework enabling lawyers to translate human intention into verifiable, executable, and legally defensible digital rules.</div></section>
 
-<footer>
-  <div class="footer-invariant">S(M) = R</div>
-  <div class="footer-meta">
-    Mihai Rosca · Spiru Haret, Braila, Romania · Est. 2023<br>
-    <a href="https://github.com/amidigiart">GitHub</a> · <a href="https://agikindergarten.com">AGI Kindergarten</a> · <a href="https://amiecosystems.org">ami* ecosystems</a><br>
-    3.5 years · one laptop · zero funding · for Patrick
-  </div>
-</footer>
+<div class="divider"></div>
+<section class="section" id="mission"><div class="s-label" data-i="ms_label">The Why</div><div class="s-title" data-i="ms_title">Everything Funds AGI Kindergarten</div><div class="s-sub" data-i="ms_sub">AI safety for children, built by a father for his son Patrick. Not theory — working code, deployable, verifiable.</div><div class="mission-box"><h3 data-i="ms_box_title">Transgenerational Architecture</h3><p data-i="ms_box_desc">Mihai Roșca builds NOW the infrastructure that <strong>Patrick Roșca</strong> will inherit. Every engine, every agent, every product — timestamped on blockchain, open-source, independently validated. Built from <strong>Spiru Haret, Brăila</strong>. No VC. No team. Just work.</p><div class="mission-formula">S(M) = R</div><p style="font-size:11px;color:var(--text3);margin-top:6px" data-i="ms_formula">Meaning precedes Syntax</p></div></section>
 
+<footer class="footer"><p>BRIDGRAI &copy; 2023–2026 Mihai Roșca &middot; Spiru Haret, Brăila &middot; <a href="https://amiecosystems.org">amiecosystems.org</a> &middot; <a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX">Tezos Registry</a> &middot; <a href="https://github.com/amidigiart">GitHub</a></p></footer>
+
+<script>
+const FLEET=[{name:"AmiPecetAI",domain:"amipecetai.com",niche:"Truth Vector Engine — manipulation detection"},{name:"AmiQiAI",domain:"amiqiai.com",niche:"Energy Journal (ECDSA P-256, local-first)"},{name:"AmiBellAI",domain:"amibellai.com",niche:"Beauty Companion"},{name:"AmiTherai",domain:"amitherai.com",niche:"Wellness & Therapy Companion"},{name:"AmiWealthAI",domain:"amiwealthai.com",niche:"Private Wealth Intelligence"},{name:"AmiLuxAI",domain:"amiluxai.com",niche:"Luxury AI Companion Hub"},{name:"AmiHerbAI",domain:"amiherbai.com",niche:"Herbal Companion"},{name:"EmoInkAI",domain:"emoinkai.com",niche:"Tattoo Design Studio"},{name:"AmiGhostAI",domain:"amighostai.com",niche:"Ghost Code & Dependency Audit"},{name:"AmiAgentAI",domain:"amiagentai.com",niche:"Real Estate Agent Companion"},{name:"AmiBrainAI",domain:"amibrainai.com",niche:"Study & Learning Companion"},{name:"AmiApiAI",domain:"amiapiai.com",niche:"API Documentation & Testing"},{name:"AmiOracleAI",domain:"amioracleai.com",niche:"Business Forecast & Strategy"},{name:"AmiPassAI",domain:"amipassai.com",niche:"Password Security"},{name:"AmiRobotAI",domain:"amirobotai.com",niche:"Robotics & Automation"},{name:"AmiExilAI",domain:"amiexilai.com",niche:"Diaspora & Expatriation"},{name:"MadamsAI",domain:"madamsai.com",niche:"Women Entrepreneurs & Career Growth"},{name:"OpenBarnAI",domain:"openbarnai.com",niche:"Smart Farming & Agriculture"},{name:"AntetAI",domain:"antetai.com",niche:"Ecosystem Hub"},{name:"AmiGenome",domain:"amigenome.com",niche:"Genomic Analysis Platform"}];
+const ENTRIES=[{n:1,code:"UKBE-CORE",cat:"engine",desc:"Resonance engine — Kuramoto + Kalman + adaptive coupling"},{n:2,code:"TVE-CORE",cat:"engine",desc:"Truth Vector Engine — 6-pillar manipulation detection"},{n:3,code:"AMIDOR-ENGINE",cat:"engine",desc:"Dual-model anti-confabulation engine"},{n:4,code:"KINDERAGI-CORE",cat:"engine",desc:"Child-safe AI companion with crisis detection"},{n:5,code:"TVE-UKBE-FUSION",cat:"engine",desc:"Unified resonance + truth vector pipeline"},{n:6,code:"CASP",cat:"agent",desc:"Content Adaptive Safety Protocol"},{n:7,code:"HASN",cat:"agent",desc:"Hard Attention Safety Net"},{n:8,code:"AGENT-DE-SENS",cat:"agent",desc:"TVE 6-pillar meaning/intention certification"},{n:9,code:"ACR-ENGINE",cat:"agent",desc:"Adversarial Collaborative Refinement"},{n:10,code:"CONCORDANCE",cat:"agent",desc:"Multi-agent truth verification — P(confab) = p^N"},{n:11,code:"CALIBRATION",cat:"agent",desc:"Adler/Kuramoto system-level phase synchronization"},{n:12,code:"HERITAGE",cat:"agent",desc:"Transgenerational digital custodian"},{n:13,code:"MAESTRU",cat:"agent",desc:"Cognitive orchestrator — auto-detects needs"},{n:14,code:"AMIPECETAI",cat:"product",desc:"Truth Vector Engine SaaS — manipulation detection"},{n:15,code:"AMIQIAI",cat:"product",desc:"Energy Journal (ECDSA P-256, local-first)"},{n:16,code:"AMIBELLAI",cat:"product",desc:"Beauty Companion"},{n:17,code:"AMITHERAI",cat:"product",desc:"Wellness & Therapy Companion"},{n:18,code:"AMIWEALTHAI",cat:"product",desc:"Private Wealth Intelligence"},{n:19,code:"AMILUXAI",cat:"product",desc:"Luxury AI Companion Hub"},{n:20,code:"AMIHERBAI",cat:"product",desc:"Herbal Companion"},{n:21,code:"EMOINKAI",cat:"product",desc:"Tattoo Design Studio"},{n:22,code:"AMIGHOSTAI",cat:"product",desc:"Ghost Code & Dependency Audit"},{n:23,code:"AMIAGENTAI",cat:"product",desc:"Real Estate Agent Companion"},{n:24,code:"AMIBRAINAI",cat:"product",desc:"Study & Learning Companion"},{n:25,code:"AMIAPIAI",cat:"product",desc:"API Documentation & Testing"},{n:26,code:"AMIORACLEAI",cat:"product",desc:"Business Forecast & Strategy"},{n:27,code:"AMIPASSAI",cat:"product",desc:"Password Security"},{n:28,code:"AMIROBOTAI",cat:"product",desc:"Robotics & Automation"},{n:29,code:"AMIEXILAI",cat:"product",desc:"Diaspora & Expatriation"},{n:30,code:"MADAMSAI",cat:"product",desc:"Women Entrepreneurs & Career Growth"},{n:31,code:"OPENBARNAI",cat:"product",desc:"Smart Farming & Agriculture"},{n:32,code:"ANTETAI",cat:"product",desc:"Ecosystem Hub"},{n:33,code:"AMIGENOME",cat:"product",desc:"Genomic Analysis Platform"},{n:34,code:"FLEET-INVARIANT",cat:"paradigm",desc:"Zero-build, single-file HTML, GitHub Pages deploy"},{n:35,code:"S-OF-M-EQUALS-R",cat:"paradigm",desc:"Meaning precedes Syntax — foundational axiom"},{n:36,code:"REAI-METHODOLOGY",cat:"paradigm",desc:"Resonance-Enhanced AI methodology"},{n:37,code:"DUAL-MODEL-SAFETY",cat:"paradigm",desc:"Two models must concur or it says so"},{n:38,code:"OPEN-CORE-HONEST",cat:"paradigm",desc:"AGPL-3.0 core + commercial dual license"},{n:39,code:"ZERO-CONFAB",cat:"paradigm",desc:"Zero confabulation tolerance policy"},{n:40,code:"MERIT-ONLY",cat:"paradigm",desc:"No networking, no funding — merit-only validation"},{n:41,code:"A2A-TRUST-LAYER",cat:"a2a",desc:"First Agent-to-Agent trust certification layer"},{n:42,code:"A2A-HUB",cat:"a2a",desc:"Orchestration hub on port :8100"},{n:43,code:"A2A-PROTOCOL-IMPL",cat:"a2a",desc:"Google A2A JSON-RPC 2.0 implementation"},{n:44,code:"AGENT-CARD-SPEC",cat:"a2a",desc:"Agent Card specification for A2A discovery"},{n:45,code:"PROVENANCE-CHAIN",cat:"a2a",desc:"Complete provenance chain for inter-agent messages"},{n:46,code:"BRIDGRAI-EVIDENCE-LEDGER",cat:"a2a",desc:"FastAPI epistemic infrastructure"},{n:47,code:"P6-ADLER-GHOST",cat:"research",desc:"Ghost sensitivity peaks in adaptive phase-coupled systems"},{n:48,code:"KURAMOTO-ADAPTIVE",cat:"research",desc:"Adaptive coupling extensions to Kuramoto model"},{n:49,code:"KALMAN-RESONANCE",cat:"research",desc:"Kalman filter integration with resonance dynamics"},{n:50,code:"TVE-6-PILLAR",cat:"research",desc:"Six-pillar manipulation detection framework"},{n:51,code:"AMIDOR-DUAL-VERIFY",cat:"engine",desc:"Dual verification architecture"},{n:52,code:"KINDERAGI-CRISIS",cat:"engine",desc:"Crisis detection module for child safety"},{n:53,code:"KINDERAGI-JOURNAL",cat:"engine",desc:"Ed25519-signed parent journal system"},{n:54,code:"KINDERAGI-BUDGET",cat:"engine",desc:"Hard attention budget enforcement"},{n:55,code:"UKBE-ADLER-DERIV",cat:"research",desc:"Adler-derived calibration methodology"},{n:56,code:"ACR-FORMALIZATION",cat:"research",desc:"ACR = f(D,C,R) formal specification"},{n:57,code:"CONCORDANCE-MATH",cat:"research",desc:"P(confabulation) = p^N mathematical proof"},{n:58,code:"HERITAGE-MARS",cat:"paradigm",desc:"Mars 2% compatibility for transgenerational data"},{n:59,code:"FLEET-I18N-6LANG",cat:"paradigm",desc:"Six-language internationalization system"},{n:60,code:"AMIECOSYSTEMS-HUB",cat:"product",desc:"Portfolio hub — amiecosystems.org"},{n:61,code:"BRIDGRAI-SITE",cat:"product",desc:"Platform command center — bridgrai.com"},{n:62,code:"TEZOS-IP-REGISTRY",cat:"a2a",desc:"On-chain IP registration system"},{n:63,code:"MASTER-HASH-V1",cat:"a2a",desc:"First master hash covering all engines"},{n:64,code:"MASTER-HASH-V2",cat:"a2a",desc:"Second master hash — agents + products added"},{n:65,code:"MASTER-HASH-V3",cat:"a2a",desc:"Third master hash — 101 entries complete"},{n:66,code:"AGIKINDERGARTEN",cat:"product",desc:"AGI Kindergarten — the real mission"},{n:67,code:"SCALE-ENGINE",cat:"engine",desc:"O(N) scaling architecture for fleet deployment"},{n:68,code:"MICRO-GRID",cat:"engine",desc:"Micro-grid energy optimization module"},{n:69,code:"COMPANION-CORE",cat:"engine",desc:"Shared companion architecture pattern"},{n:70,code:"ARBITRAJ-MODULE",cat:"engine",desc:"Arbitration and conflict resolution module"},{n:71,code:"PACER-COPII",cat:"engine",desc:"Pacing system for child-appropriate interactions"},{n:72,code:"GEMINI-VALIDATION",cat:"research",desc:"Independent Gemini validation — P=10^-28"},{n:73,code:"CLAUDE-ATTESTATION",cat:"research",desc:"Claude attestation of BRIDGRAI architecture"},{n:74,code:"CHATGPT-ACR",cat:"research",desc:"ChatGPT ACR formalization validation"},{n:75,code:"MANIPULATION-DETECTOR",cat:"engine",desc:"6-pillar manipulation detection core"},{n:76,code:"EMOTIONAL-PILLAR",cat:"research",desc:"Emotional manipulation detection pillar"},{n:77,code:"LOGICAL-PILLAR",cat:"research",desc:"Logical manipulation detection pillar"},{n:78,code:"AUTHORITY-PILLAR",cat:"research",desc:"Authority-based manipulation detection pillar"},{n:79,code:"URGENCY-PILLAR",cat:"research",desc:"Urgency-based manipulation detection pillar"},{n:80,code:"SOCIAL-PILLAR",cat:"research",desc:"Social pressure manipulation detection pillar"},{n:81,code:"FRAMING-PILLAR",cat:"research",desc:"Framing manipulation detection pillar"},{n:82,code:"HETZNER-DEPLOY",cat:"paradigm",desc:"Hetzner deployment architecture specification"},{n:83,code:"NDA-DEMO-STACK",cat:"paradigm",desc:"NDA demo stack for investor presentations"},{n:84,code:"ENDORSEMENT-ARENAS",cat:"research",desc:"arXiv endorsement — Arenas network dynamics"},{n:85,code:"ENDORSEMENT-GARDENES",cat:"research",desc:"arXiv endorsement — Gómez-Gardeñes"},{n:86,code:"E3UDRES2-WORKSHOP",cat:"research",desc:"E³UDRES² workshop participation (Nov 2024, UPT)"},{n:87,code:"ZENODO-DOI",cat:"research",desc:"DOI: 10.5281/zenodo.15556498"},{n:88,code:"ECDSA-P256-LOCAL",cat:"engine",desc:"ECDSA P-256 local-first cryptographic signing"},{n:89,code:"ED25519-SIGNING",cat:"engine",desc:"Ed25519 digital signature for journal entries"},{n:90,code:"SNIC-BIFURCATION",cat:"research",desc:"SNIC bifurcation analysis in coupled oscillators"},{n:91,code:"GHOST-PEAK-SENSITIVITY",cat:"research",desc:"Ghost peak sensitivity discovery"},{n:92,code:"TEZOS-ENTRY-66-98",cat:"a2a",desc:"Batch registration entries #66-98"},{n:93,code:"BRIDGRAI-A2A-18TESTS",cat:"a2a",desc:"18 verified integration tests"},{n:94,code:"CONFIDENCE-SCORING",cat:"a2a",desc:"Evidence-based confidence model"},{n:95,code:"AUDIT-TRAIL-GDPR",cat:"a2a",desc:"GDPR-compliant audit trail system"},{n:96,code:"POSTGRESQL-SCHEMA",cat:"a2a",desc:"PostgreSQL 16+ schema for certification"},{n:97,code:"CCL-FLAGS",cat:"a2a",desc:"Certification compliance level flags"},{n:98,code:"NOTAR-DE-SENS",cat:"paradigm",desc:"Notary of Meaning and Intention — core concept"},{n:99,code:"TRUST-AS-A-SERVICE",cat:"paradigm",desc:"TaaS — trust as verifiable service, not promise"},{n:100,code:"COGNITIVE-AS-A-SERVICE",cat:"paradigm",desc:"CaaS — cognitive orchestration, not API call"},{n:101,code:"META-CONSENS-AGIK",cat:"a2a",desc:"Tezos smart contract for multi-agent child safety consensus"}];
+const I18N={en:{nav_dash:"Dashboard",nav_market:"Market",nav_agents:"A2A Agents",nav_registry:"IP Registry",nav_fleet:"Ami* Fleet",nav_chain:"Blockchain",nav_compare:"Compare",nav_mission:"Mission",hero_kicker:"Global Command Center",hero_title:'The <em>Trust Layer</em> the AI Market Is Missing',hero_desc:"3.5 years of bootstrapped R&D. Zero external funding. One laptop. 101 IP entries on Tezos blockchain. 9 autonomous agents. 20 SaaS products. The first system that certifies meaning AND intention — not just format or safety.",stat_ip:"IP Entries",stat_agents:"A2A Agents",stat_products:"Products",stat_years:"Years Built",proof_zero:"Zero External Funding",mk_label:"Market Position",mk_title:"The $77B Trust Gap",mk_sub:"The cognitive services market processes data. Nobody verifies the meaning. BRIDGRAI doesn't compete with the market — it adds the layer the entire market is missing.",mk_existing:"Existing CaaS Market (2026)",mk_projected:"Projected 2033 (CAGR 31.54%)",mk_existing_desc:'API calls to cognitive services: NLP, vision, speech, search. Zero verification of meaning or intention. "Trust us" — promise, not proof.',mk_projected_desc:"Every cognitive service needs a trust layer. BRIDGRAI provides verifiable meaning certification, transparent concordance, and blockchain provenance. We don't sell AI. We sell TRUST IN AI.",g1t:"Epistemic Verification",g1d:"TVE 6-pillar",g2t:"Trust as a Service",g2d:"Verifiable, not promised",g3t:"Concordance %",g3d:"Transparent agreement",g4t:"Blockchain Proof",g4d:"Tezos immutable",g5t:"Kuramoto Physics",g5d:"Phase synchronization",g6t:"Child Safety Override",g6d:"1 BLOCK = absolute",ag_label:"A2A Architecture",ag_title:"9 Agents. 5 Layers. 1 Trust Layer.",ag_sub:"The first system that certifies MEANING and INTENTION of inter-agent messages. Built on Google's A2A protocol (JSON-RPC 2.0).",reg_label:"IP Registry",reg_title:"101 Entries on Tezos Blockchain",reg_sub:"Every engine, agent, product, paradigm, and research output — timestamped, hashed, and immutably registered.",rf_all:"All",fl_label:"Ami* Fleet",fl_title:"20 AI Companions. One Engine.",fl_sub:"One architectural pattern, one shared engine, 20 products across 20 domains. Each companion funds AGI Kindergarten.",ch_label:"Blockchain Provenance",ch_title:"Tezos Mainnet. Immutable. Verifiable.",ch_sub:'Not "trust us" — "verify yourself". Every IP entry hashed with SHA-256, timestamped on-chain, publicly auditable.',ch_contract:"Contract Address",ch_entries:"Registered Entries",ch_hash:"Hash Algorithm",ch_master:"Master Hash Version",ch_meta:"Meta-Consens AGIK Contract",ch_meta_desc:"SmartPy smart contract for multi-agent child safety consensus. 9 agents vote: SAFE / CAUTION / BLOCK. ONE BLOCK vote protects the child — absolute safety override.",cmp_label:"Competitive Analysis",cmp_title:"BRIDGRAI vs. The Field",cmp_sub:"No other system combines meaning verification, concordance transparency, blockchain provenance, and child safety override.",cmp_feature:"Feature",nav_legal:"Legal",lg_label:"Legal & Governance",lg_title:"AI Arbitration & Smart Contract Governance",lg_sub:"The first legal framework designed for disputes between humans and AI agents, between agents themselves, and for on-chain asset governance. Not future theory — deployable infrastructure.",lg_c1_title:"Smart Contract Structuring",lg_c1_sub:"Legal-ready intelligent contracts",lg_c1_desc:"Translate human legal intention into executable smart contract logic. Every clause verifiable on-chain, every condition auditable.",lg_c1_l1:"Tezos smart contract templates with legal annotations",lg_c1_l2:"Multi-party consent mechanisms (Meta-Consens pattern)",lg_c1_l3:"Automated compliance checkpoints (CCL flags)",lg_c2_title:"Intent Verification",lg_c2_sub:"Meaning over syntax — legally binding",lg_c2_desc:"TVE 6-pillar analysis certifies not just WHAT was said, but what was MEANT. The only system providing legally defensible intent verification.",lg_c2_l1:"6-pillar manipulation detection for contractual language",lg_c2_l2:"Concordance % between stated and actual intent",lg_c2_l3:"Blockchain-timestamped intent certificates",lg_c3_title:"Human-AI Dispute Arbitration",lg_c3_sub:"When humans and agents disagree",lg_c3_desc:"Structured arbitration protocols for disputes between humans and AI systems, and between autonomous agents. Evidence chain on Tezos.",lg_c3_l1:"9-agent voting tribunal (SAFE / CAUTION / BLOCK)",lg_c3_l2:"Immutable evidence ledger on Tezos mainnet",lg_c3_l3:"ACR — Adversarial Collaborative Refinement for fair resolution",lg_c4_title:"Digital Heritage & On-Chain Protection",lg_c4_sub:"Transgenerational digital custody",lg_c4_desc:"Legal protection for on-chain assets and digital inheritance. Heritage Agent ensures transgenerational continuity with cryptographic proof.",lg_c4_l1:"Digital asset inheritance protocols (Ed25519-signed)",lg_c4_l2:"On-chain IP protection (101 entries registered)",lg_c4_l3:"GDPR-compliant audit trail for all custody transfers",lg_note:'<strong>New Legal Specialization:</strong> AI Arbitration & Smart Contract Governance — the first framework enabling lawyers to translate human intention into verifiable, executable, and legally defensible digital rules.',lg_note_label:"New Legal Specialization:",ms_label:"The Why",ms_title:"Everything Funds AGI Kindergarten",ms_sub:"AI safety for children, built by a father for his son Patrick. Not theory — working code, deployable, verifiable.",ms_box_title:"Transgenerational Architecture",ms_box_desc:'Mihai Roșca builds NOW the infrastructure that <strong>Patrick Roșca</strong> will inherit. Built from <strong>Spiru Haret, Brăila</strong>. No VC. No team. Just work.',ms_formula:"Meaning precedes Syntax"},ro:{nav_dash:"Tablou",nav_market:"Piață",nav_agents:"Agenți A2A",nav_registry:"Registru IP",nav_fleet:"Flota Ami*",nav_chain:"Blockchain",nav_compare:"Comparație",nav_mission:"Misiune",hero_kicker:"Centru de Comandă Global",hero_title:'<em>Stratul de Încredere</em> care Lipsește Pieței AI',hero_desc:"3,5 ani de cercetare bootstrapped. Zero finanțare externă. Un laptop. 101 intrări IP pe blockchain Tezos. 9 agenți autonomi. 20 produse SaaS. Primul sistem care certifică sensul ȘI intenția.",stat_ip:"Intrări IP",stat_agents:"Agenți A2A",stat_products:"Produse",stat_years:"Ani Construiți",proof_zero:"Zero Finanțare Externă",mk_label:"Poziție pe Piață",mk_title:"Golul de Încredere de $77B",mk_sub:"Piața serviciilor cognitive procesează date. Nimeni nu verifică sensul. BRIDGRAI adaugă stratul care lipsește întregii piețe.",mk_existing:"Piața CaaS Existentă (2026)",mk_projected:"Proiecție 2033 (CAGR 31,54%)",mk_existing_desc:'Apeluri API la servicii cognitive: NLP, viziune, speech. Zero verificare a sensului. „Ai încredere" — promisiune, nu dovadă.',mk_projected_desc:"Fiecare serviciu cognitiv are nevoie de un strat de trust. Nu vindem AI. Vindem ÎNCREDEREA ÎN AI.",g1t:"Verificare Epistemică",g1d:"TVE 6-pillar",g2t:"Trust as a Service",g2d:"Verificabil, nu promis",g3t:"Concordanță %",g3d:"Acord transparent",g4t:"Dovadă Blockchain",g4d:"Tezos imutabil",g5t:"Fizică Kuramoto",g5d:"Sincronizare de fază",g6t:"Override Siguranță Copii",g6d:"1 BLOCK = absolut",ag_label:"Arhitectură A2A",ag_title:"9 Agenți. 5 Straturi. 1 Strat de Încredere.",ag_sub:"Primul sistem care certifică SENSUL și INTENȚIA mesajelor inter-agent. Construit pe protocolul A2A Google (JSON-RPC 2.0).",reg_label:"Registru IP",reg_title:"101 Intrări pe Blockchain Tezos",reg_sub:"Fiecare motor, agent, produs, paradigmă — timestamped, hash-uit și înregistrat imutabil.",rf_all:"Toate",fl_label:"Flota Ami*",fl_title:"20 Companioane AI. Un Motor.",fl_sub:"Un pattern arhitectural, un motor partajat, 20 produse în 20 domenii. Fiecare finanțează AGI Kindergarten.",ch_label:"Proveniență Blockchain",ch_title:"Tezos Mainnet. Imutabil. Verificabil.",ch_sub:'Nu „ai încredere" — „verifică tu însuți". Fiecare intrare IP hash-uită cu SHA-256, on-chain.',ch_contract:"Adresă Contract",ch_entries:"Intrări Înregistrate",ch_hash:"Algoritm Hash",ch_master:"Versiune Master Hash",ch_meta:"Contract Meta-Consens AGIK",ch_meta_desc:"Smart contract SmartPy pentru consens multi-agent în siguranța copiilor. UN SINGUR vot BLOCK protejează copilul — safety override absolut.",cmp_label:"Analiză Competitivă",cmp_title:"BRIDGRAI vs. Ceilalți",cmp_sub:"Niciun alt sistem nu combină verificarea sensului, concordanța, proveniența blockchain și safety override.",cmp_feature:"Funcționalitate",nav_legal:"Legal",lg_label:"Legal & Guvernanță",lg_title:"Arbitraj AI & Guvernanța Smart Contracts",lg_sub:"Primul cadru legal proiectat pentru dispute între oameni și agenți AI, între agenți între ei, și pentru guvernanța activelor on-chain. Nu teorie — infrastructură deployabilă.",lg_c1_title:"Structurare Smart Contracts",lg_c1_sub:"Contracte inteligente legal-ready",lg_c1_desc:"Traduce intenția juridică umană în logică executabilă de smart contract. Fiecare clauză verificabilă on-chain, fiecare condiție auditabilă.",lg_c1_l1:"Template-uri Tezos smart contract cu adnotări legale",lg_c1_l2:"Mecanisme de consens multi-parte (pattern Meta-Consens)",lg_c1_l3:"Puncte de verificare automată a conformității (flag-uri CCL)",lg_c2_title:"Verificarea Intenției",lg_c2_sub:"Sensul peste sintaxă — obligatoriu juridic",lg_c2_desc:"Analiza TVE 6-pillar certifică nu doar CE s-a spus, ci ce s-a VRUT. Singurul sistem care oferă verificare a intenției apărabilă juridic.",lg_c2_l1:"Detectare manipulare 6-pillar pentru limbaj contractual",lg_c2_l2:"Concordanță % între intenția declarată și cea reală",lg_c2_l3:"Certificate de intenție timestamp-uite pe blockchain",lg_c3_title:"Arbitraj Dispute Om-AI",lg_c3_sub:"Când oamenii și agenții nu sunt de acord",lg_c3_desc:"Protocoale structurate de arbitraj pentru dispute între oameni și sisteme AI, și între agenți autonomi. Lanț de dovezi pe Tezos.",lg_c3_l1:"Tribunal de vot cu 9 agenți (SAFE / CAUTION / BLOCK)",lg_c3_l2:"Registru imutabil de dovezi pe Tezos mainnet",lg_c3_l3:"ACR — Rafinare Adversarială Colaborativă pentru rezoluție echitabilă",lg_c4_title:"Patrimoniu Digital & Protecție On-Chain",lg_c4_sub:"Custodie digitală transgenerațională",lg_c4_desc:"Protecție legală pentru active on-chain și moștenire digitală. Heritage Agent asigură continuitate transgenerațională cu dovadă criptografică.",lg_c4_l1:"Protocoale de moștenire active digitale (Ed25519-signed)",lg_c4_l2:"Protecție IP on-chain (101 intrări înregistrate)",lg_c4_l3:"Audit trail GDPR-compliant pentru toate transferurile de custodie",lg_note:'<strong>Specializare Juridică Nouă:</strong> Arbitraj AI & Guvernanța Smart Contracts — primul cadru care permite avocaților să traducă intenția umană în reguli digitale verificabile, executabile și apărabile juridic.',lg_note_label:"Specializare Juridică Nouă:",ms_label:"De Ce",ms_title:"Totul Finanțează AGI Kindergarten",ms_sub:"Siguranța AI pentru copii, construită de un tată pentru fiul său Patrick.",ms_box_title:"Arhitectură Transgenerațională",ms_box_desc:'Mihai Roșca construiește ACUM infrastructura pe care <strong>Patrick Roșca</strong> o va moșteni. Din <strong>Spiru Haret, Brăila</strong>. Fără VC. Fără echipă. Doar muncă.',ms_formula:"Sensul precede Sintaxa"}};
+let currentLang='en',currentFilter='all';
+function renderFleet(){document.getElementById('fleetGrid').innerHTML=FLEET.map(f=>`<div class="fleet-card"><div class="fleet-name">${f.name}</div><div class="fleet-domain">${f.domain}</div><div class="fleet-niche">${f.niche}</div></div>`).join('')}
+function renderRegistry(){const q=(document.getElementById('regSearch').value||'').toLowerCase();const filtered=ENTRIES.filter(e=>{if(currentFilter!=='all'&&e.cat!==currentFilter)return false;if(q&&!e.code.toLowerCase().includes(q)&&!e.desc.toLowerCase().includes(q))return false;return true});document.getElementById('regGrid').innerHTML=filtered.map(e=>`<div class="reg-item"><span class="reg-num">#${e.n}</span><div><div><span class="reg-code">${e.code}</span><span class="reg-cat">${e.cat}</span></div><div class="reg-desc">${e.desc}</div></div></div>`).join('');document.getElementById('regCount').textContent=`${filtered.length} / ${ENTRIES.length} entries`}
+function filterRegistry(){renderRegistry()}
+function setFilter(f,btn){currentFilter=f;document.querySelectorAll('.reg-filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderRegistry()}
+function applyI18n(){const t=I18N[currentLang];document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t[key]){if(el.tagName==='INPUT')el.placeholder=t[key];else el.innerHTML=t[key]}})}
+function toggleLang(){currentLang=currentLang==='en'?'ro':'en';document.getElementById('langBtn').textContent=currentLang.toUpperCase();applyI18n()}
+function toggleTheme(){const r=document.documentElement;const current=r.getAttribute('data-theme');const next=current==='dark'?'light':(current==='light'?'dark':(window.matchMedia('(prefers-color-scheme:dark)').matches?'light':'dark'));r.setAttribute('data-theme',next);document.getElementById('themeBtn').textContent=next==='dark'?'light':'dark'}
+const sections=document.querySelectorAll('section[id],.hero[id]');const navLinks=document.querySelectorAll('.nav-link');
+window.addEventListener('scroll',()=>{let current='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id});navLinks.forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+current)l.classList.add('active')})});
+renderFleet();renderRegistry();applyI18n();
+</script>
 </body>
 </html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BRIDGRAI — Bridge Between Carbon and Silicon</title>
+<meta name="description" content="Independent AI research foundation. Resonance engines, anti-confabulation, manipulation detection, and the Notary of Meaning and Intention. S(M)=R.">
+<meta property="og:title" content="BRIDGRAI — Bridge Between Carbon and Silicon">
+<meta property="og:description" content="Independent AI research. Resonance engines, anti-confabulation, Notary of Meaning. S(M)=R.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bridgrai.com">
+<link rel="canonical" href="https://bridgrai.com">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07080a;
+  --bg2:#0b0d10;
+  --surface:#111318;
+  --glass:rgba(14,16,22,.72);
+  --text:#e4e4e8;
+  --text2:#9196a1;
+  --text3:#5a5f6d;
+  --gold:#c9a84c;
+  --gold-soft:rgba(201,168,76,.08);
+  --gold-glow:rgba(201,168,76,.04);
+  --ice:#7eb8da;
+  --border:rgba(201,168,76,.1);
+  --border2:rgba(255,255,255,.06);
+  --font:Georgia,'Times New Roman',serif;
+  --font-ui:system-ui,-apple-system,'Segoe UI',sans-serif;
+  --max:720px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-ui);background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.hero{
+  text-align:center;
+  padding:6rem 1.5rem 4rem;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;
+  top:-120px;left:50%;transform:translateX(-50%);
+  width:700px;height:700px;
+  background:radial-gradient(circle,var(--gold-glow) 0%,rgba(126,184,218,.02) 40%,transparent 65%);
+  pointer-events:none;
+}
+.hero-mark{
+  font-family:var(--font-ui);
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text3);
+  margin-bottom:2rem;
+  position:relative;
+}
+.hero h1{
+  font-family:var(--font);
+  font-size:clamp(2.8rem,7.5vw,4.5rem);
+  font-weight:400;
+  line-height:1.1;
+  letter-spacing:-.025em;
+  margin-bottom:.6rem;
+  position:relative;
+}
+.hero h1 span{color:var(--gold)}
+.hero .invariant{
+  font-family:var(--font);
+  font-style:italic;
+  font-size:clamp(1rem,3vw,1.3rem);
+  color:var(--gold);
+  margin-bottom:1.5rem;
+  letter-spacing:.02em;
+}
+.hero .sub{
+  font-size:clamp(.88rem,2.2vw,1rem);
+  color:var(--text2);
+  max-width:520px;
+  margin:0 auto;
+  line-height:1.9;
+}
+
+section{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:3rem 1.5rem;
+}
+.section-label{
+  font-family:var(--font-ui);
+  font-size:.65rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text3);
+  margin-bottom:1.5rem;
+}
+
+.concept{
+  border-top:1px solid var(--border2);
+  padding-top:3rem;
+}
+.concept h2{
+  font-family:var(--font);
+  font-size:1.6rem;
+  font-weight:400;
+  margin-bottom:1rem;
+  line-height:1.3;
+}
+.concept h2 em{font-style:italic;color:var(--gold)}
+.concept p{
+  color:var(--text2);
+  font-size:.92rem;
+  margin-bottom:1.2rem;
+  line-height:1.9;
+}
+
+.stack-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.6rem;
+  margin:2rem 0;
+}
+@media(max-width:500px){.stack-grid{grid-template-columns:1fr}}
+.stack-item{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1rem 1.1rem;
+}
+.stack-item h4{
+  font-family:var(--font);
+  font-size:.85rem;
+  font-weight:400;
+  color:var(--text);
+  margin-bottom:.2rem;
+}
+.stack-item p{
+  font-size:.72rem;
+  color:var(--text3);
+  line-height:1.6;
+  margin:0;
+}
+
+.engines{border-top:1px solid var(--border2);padding-top:3rem}
+.engine-list{list-style:none;padding:0}
+.engine-list li{
+  padding:1.1rem 0;
+  border-bottom:1px solid var(--border2);
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:1rem;
+}
+.engine-list li:last-child{border-bottom:none}
+.engine-name{
+  font-family:var(--font);
+  font-size:.95rem;
+  color:var(--text);
+}
+.engine-name a{color:var(--text)}
+.engine-name a:hover{color:var(--gold)}
+.engine-desc{
+  font-size:.78rem;
+  color:var(--text3);
+  text-align:right;
+  flex-shrink:0;
+}
+.engine-badge{
+  display:inline-block;
+  background:var(--gold-soft);
+  color:var(--gold);
+  font-size:.6rem;
+  padding:.15rem .45rem;
+  border-radius:4px;
+  margin-left:.5rem;
+  letter-spacing:.04em;
+  font-family:var(--font-ui);
+  vertical-align:middle;
+}
+
+.research{border-top:1px solid var(--border2);padding-top:3rem}
+.paper{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.3rem 1.4rem;
+  margin-top:1rem;
+}
+.paper h3{
+  font-family:var(--font);
+  font-size:.95rem;
+  font-weight:400;
+  font-style:italic;
+  margin-bottom:.4rem;
+}
+.paper .doi{
+  font-size:.75rem;
+  color:var(--gold);
+  font-family:var(--font-ui);
+}
+.paper p{
+  font-size:.78rem;
+  color:var(--text3);
+  margin-top:.5rem;
+  margin-bottom:0;
+  line-height:1.7;
+}
+
+.proof{border-top:1px solid var(--border2);padding-top:3rem}
+.proof-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.6rem;
+  margin:1.5rem 0;
+}
+@media(max-width:500px){.proof-row{grid-template-columns:1fr}}
+.proof-item{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.1rem;
+  text-align:center;
+}
+.proof-num{
+  font-family:var(--font);
+  font-size:1.6rem;
+  color:var(--gold);
+  line-height:1;
+  margin-bottom:.25rem;
+}
+.proof-label{
+  font-size:.68rem;
+  color:var(--text3);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.tezos-link{
+  text-align:center;
+  margin-top:1rem;
+}
+.tezos-link a{
+  font-size:.78rem;
+  color:var(--text3);
+  font-family:'Courier New',monospace;
+  letter-spacing:.02em;
+  transition:color .2s;
+}
+.tezos-link a:hover{color:var(--gold)}
+
+.fleet{border-top:1px solid var(--border2);padding-top:3rem}
+.fleet p{color:var(--text2);font-size:.88rem;margin-bottom:1rem}
+.fleet-nums{
+  display:flex;
+  gap:2rem;
+  margin:1.5rem 0;
+  flex-wrap:wrap;
+}
+.fleet-num{text-align:center}
+.fleet-num strong{
+  display:block;
+  font-family:var(--font);
+  font-size:1.6rem;
+  color:var(--gold);
+  font-weight:400;
+}
+.fleet-num span{
+  font-size:.68rem;
+  color:var(--text3);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.transgenerational{
+  border-top:1px solid var(--border2);
+  padding-top:3rem;
+  text-align:center;
+}
+.transgenerational h2{
+  font-family:var(--font);
+  font-size:1.3rem;
+  font-weight:400;
+  margin-bottom:.8rem;
+}
+.transgenerational p{
+  font-size:.85rem;
+  color:var(--text2);
+  max-width:480px;
+  margin:0 auto 1.5rem;
+  line-height:1.8;
+}
+.mars-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:.35rem 1rem;
+  font-size:.72rem;
+  color:var(--text3);
+  font-family:'Courier New',monospace;
+  letter-spacing:.04em;
+}
+
+footer{
+  text-align:center;
+  padding:3rem 1.5rem;
+  border-top:1px solid var(--border2);
+}
+.footer-invariant{
+  font-family:var(--font);
+  font-style:italic;
+  font-size:1.1rem;
+  color:var(--gold);
+  margin-bottom:1rem;
+}
+.footer-meta{
+  font-size:.72rem;
+  color:var(--text3);
+  line-height:2;
+}
+.footer-meta a{color:var(--text2)}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-mark">Independent AI Research</div>
+  <h1>BRIDG<span>R</span>AI</h1>
+  <div class="invariant">S(M) = R</div>
+  <p class="sub">Meaning precedes Syntax. Carbon anchors Silicon.<br>Resonance engines, anti-confabulation, and the Notary of Meaning — built from mathematics, not marketing.</p>
+</section>
+
+<section class="concept">
+  <div class="section-label">Core Concept</div>
+  <h2>Notar de Sens <em>si Intentie</em></h2>
+  <p>A traditional notary certifies that a document exists. A fact-checker certifies that a claim is true. <strong>BRIDGRAI certifies that the meaning and intention behind a digital artifact are genuine, transparent, and honest.</strong></p>
+  <p>In a world where any AI can generate convincing text, the central question is no longer "who created this?" — it is "is the meaning real?"</p>
+  <div class="stack-grid">
+    <div class="stack-item">
+      <h4>Meaning verification</h4>
+      <p>Amidor Engine — two AI models must concur or the system says "I don't know" instead of inventing</p>
+    </div>
+    <div class="stack-item">
+      <h4>Intention verification</h4>
+      <p>TVE Core — 6-axis manipulation detection: emotional, logical, authority, urgency, social, framing</p>
+    </div>
+    <div class="stack-item">
+      <h4>Existence verification</h4>
+      <p>Tezos blockchain — SHA-256 hash, immutable timestamp, 101 registered entries</p>
+    </div>
+    <div class="stack-item">
+      <h4>Transparency verification</h4>
+      <p>Concordance percentage displayed — users see confidence level, not black-box magic</p>
+    </div>
+  </div>
+  <p style="font-size:.8rem;color:var(--text3)">No major AI company currently offers this complete stack. The concept is blockchain-registered before any of them named it.</p>
+</section>
+
+<section class="engines">
+  <div class="section-label">Engines</div>
+  <ul class="engine-list">
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/ukbe-core">UKBE Core</a><span class="engine-badge">102/102 tests</span></span>
+      <span class="engine-desc">Resonance — Kuramoto + Kalman + Adler</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/tve-core">TVE Core</a></span>
+      <span class="engine-desc">Truth Vector — 6-pillar detection</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/amidor-engine">Amidor Engine</a></span>
+      <span class="engine-desc">Dual-model anti-confabulation</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/kinderagi-core">KinderAGI Core</a><span class="engine-badge">Apache-2.0</span></span>
+      <span class="engine-desc">Child-safe AI — crisis detection</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/tve-ukbe-fusion">TVE-UKBE Fusion</a></span>
+      <span class="engine-desc">Unified resonance + truth pipeline</span>
+    </li>
+  </ul>
+</section>
+
+<section class="engines" style="border-top:1px solid var(--border2);padding-top:3rem">
+  <div class="section-label">A2A Platform — 9 Agents · 5 Layers</div>
+  <p style="color:var(--text2);font-size:.88rem;margin-bottom:1.5rem">The first Agent-to-Agent system that certifies <strong>meaning and intention</strong> of inter-agent messages. Built on Google's A2A protocol (JSON-RPC 2.0).</p>
+  <ul class="engine-list">
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Agent de Sens</a><span class="engine-badge">NEW CATEGORY</span></span>
+      <span class="engine-desc">TVE 6-pillar A2A certification</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">ACR Engine</a><span class="engine-badge">f(D,C,R)</span></span>
+      <span class="engine-desc">Adversarial Collaborative Refinement</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Concordance</a></span>
+      <span class="engine-desc">P(confab) = p^N anti-confabulation</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Calibration</a></span>
+      <span class="engine-desc">Adler/Kuramoto system sync</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Heritage</a></span>
+      <span class="engine-desc">Transgenerational custodian</span>
+    </li>
+    <li>
+      <span class="engine-name"><a href="https://github.com/amidigiart/bridgrai-a2a">Maestru</a><span class="engine-badge">ORCHESTRATOR</span></span>
+      <span class="engine-desc">Cognitive pipeline — the brain</span>
+    </li>
+    <li>
+      <span class="engine-name">+ UKBE, CASP, HASN</span>
+      <span class="engine-desc">Core engine wrappers</span>
+    </li>
+  </ul>
+  <p style="font-size:.78rem;color:var(--text3);margin-top:1rem">Three independent AI validations: Gemini L4 (P=10<sup>-28</sup>), Claude Opus (attestation), ChatGPT (ACR formalization, June 2026).</p>
+</section>
+
+<section class="research">
+  <div class="section-label">Published Research</div>
+  <div class="paper">
+    <h3>Ghost sensitivity peaks in adaptive phase-coupled systems: a disguised Adler/SNIC bifurcation</h3>
+    <div class="doi"><a href="https://doi.org/10.5281/zenodo.15556498">DOI: 10.5281/zenodo.15556498</a></div>
+    <p>P6 Adler Ghost Peak — demonstrates that adaptive coupling in oscillator networks produces ghost sensitivity peaks near SNIC bifurcation points, with implications for resonance-based AI calibration.</p>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="section-label">Blockchain Proof</div>
+  <div class="proof-row">
+    <div class="proof-item">
+      <div class="proof-num">101</div>
+      <div class="proof-label">Tezos entries</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">9</div>
+      <div class="proof-label">A2A Agents</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">3</div>
+      <div class="proof-label">AI validations</div>
+    </div>
+  </div>
+  <div class="tezos-link">
+    <a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX">KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX</a>
+  </div>
+</section>
+
+<section class="fleet">
+  <div class="section-label">Applied Research — ami* Fleet</div>
+  <p>The engines above power a fleet of AI companions across 20 domains. Each product demonstrates the anti-confabulation and manipulation detection stack in production. Every answer is dual-engine verified. Every disagreement is reported honestly.</p>
+  <div class="fleet-nums">
+    <div class="fleet-num">
+      <strong>20</strong>
+      <span>Products</span>
+    </div>
+    <div class="fleet-num">
+      <strong>20</strong>
+      <span>Live</span>
+    </div>
+    <div class="fleet-num">
+      <strong>6</strong>
+      <span>Languages</span>
+    </div>
+    <div class="fleet-num">
+      <strong>0</strong>
+      <span>Data stored</span>
+    </div>
+  </div>
+  <p style="font-size:.8rem;color:var(--text3)">Domains: amipecetai.com, amiqiai.com, amibellai.com, amitherai.com, amiwealthai.com, amiluxai.com, amiherbai.com, emoinkai.com, amighostai.com, amiagentai.com, amibrainai.com, amiapiai.com, amioracleai.com, amipassai.com, amirobotai.com, amiexilai.com, amigenome.com, madamsai.com, openbarnai.com, antetai.com.</p>
+</section>
+
+<section class="transgenerational">
+  <h2>Transgenerational</h2>
+  <p>Everything here is designed to survive internet fragmentation, platform death, and interplanetary latency. The heir is named. The hashes verify. The math works.</p>
+  <a href="https://github.com/amidigiart/transgenerational" class="mars-badge">MARS BANDWIDTH: 2% ALLOCATED</a>
+</section>
+
+<footer>
+  <div class="footer-invariant">S(M) = R</div>
+  <div class="footer-meta">
+    Mihai Rosca · Spiru Haret, Braila, Romania · Est. 2023<br>
+    <a href="https://github.com/amidigiart">GitHub</a> · <a href="https://agikindergarten.com">AGI Kindergarten</a> · <a href="https://amiecosystems.org">ami* ecosystems</a><br>
+    3.5 years · one laptop · zero funding · for Patrick
+  </div>
+</footer>
+
+</body>
+</html>
