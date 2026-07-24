@@ -296,7 +296,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   <div class="page-desc" data-t="dash_desc">Ecosistemul BRIDGRAI — 3,5 ani de cercetare independentă, zero finanțare externă. Fiecare hash e verificabil, fiecare linie de cod e publică.</div>
 
   <div class="grid-4" style="margin-bottom:20px">
-    <div class="card kpi gold"><div class="kpi-val">100</div><div class="kpi-label" data-t="kpi_ip">IP Entries</div></div>
+    <div class="card kpi gold"><div class="kpi-val">101</div><div class="kpi-label" data-t="kpi_ip">IP Entries</div></div>
     <div class="card kpi blue"><div class="kpi-val">9</div><div class="kpi-label" data-t="kpi_agents">A2A Agents</div></div>
     <div class="card kpi green"><div class="kpi-val">11</div><div class="kpi-label" data-t="kpi_products">SaaS Products</div></div>
     <div class="card kpi gold"><div class="kpi-val">2</div><div class="kpi-label" data-t="kpi_paradigms">Paradigme Noi</div></div>
@@ -339,7 +339,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <tr><td>Blockchain Provenance</td><td class="cmp-y">✓ Tezos</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
       <tr><td data-t="cmp_cognitive">Detecție Nevoi Cognitive</td><td class="cmp-y">✓ Maestru</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-p">~</td><td class="cmp-p">~</td></tr>
       <tr><td>Kuramoto Physics</td><td class="cmp-y">✓</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
-      <tr><td data-t="cmp_ip">IP pe Blockchain</td><td class="cmp-y">✓ 100</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
+      <tr><td data-t="cmp_ip">IP pe Blockchain</td><td class="cmp-y">✓ 101</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
     </table>
     </div>
   </div>
@@ -348,7 +348,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 <!-- ====== REGISTRY ====== -->
 <div class="view" id="v-registry">
   <div class="page-title" data-t="reg_title">Registrul IP</div>
-  <div class="page-desc" data-t="reg_desc">100 de active intelectuale înregistrate pe Tezos blockchain. Fiecare cu SHA-256 hash și timestamp imutabil.</div>
+  <div class="page-desc" data-t="reg_desc">101 de active intelectuale înregistrate pe Tezos blockchain. Fiecare cu SHA-256 hash și timestamp imutabil.</div>
   <div class="search-wrap">
     <input class="search-box" type="text" placeholder="Caută entry..." id="regSearch" oninput="filterEntries()">
   </div>
@@ -461,7 +461,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     </div>
     <div style="font-family:var(--mono);font-size:11px;color:var(--blue);word-break:break-all;margin-bottom:14px">KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-      <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--gold)">100</div><div style="font-size:10px;color:var(--text-3)">ENTRIES</div></div>
+      <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--gold)">101</div><div style="font-size:10px;color:var(--text-3)">ENTRIES</div></div>
       <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--green)">2</div><div style="font-size:10px;color:var(--text-3)">MASTER HASHES</div></div>
       <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--blue)">∞</div><div style="font-size:10px;color:var(--text-3)" data-t="bc_immutable">IMUTABIL</div></div>
     </div>
@@ -477,8 +477,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     SHA-256 · Tezos mainnet · timestamp imutabil
   </div>
   <div class="hash-card">
-    <div class="hash-label">Master Hash v3 — Arhive + Ground Zero + A2A (100 entries) <span class="hash-status hash-pending">PENDING</span></div>
-    <span data-t="bc_v3_note">Se va înregistra după confirmarea on-chain a entries #66-100</span>
+    <div class="hash-label">Master Hash v3 — Arhive + Ground Zero + A2A (101 entries) <span class="hash-status hash-pending">PENDING</span></div>
+    <span data-t="bc_v3_note">Se va înregistra după confirmarea on-chain a entries #66-101</span>
   </div>
 
   <div class="section-head" data-t="bc_how">Cum Verifici</div>
@@ -597,6 +597,7 @@ const ENTRIES = [
   {c:'AGENT-MAESTRU',d:'Agent Maestru — orchestrator cognitiv (nu doar router)',cat:'a2a'},
   {c:'TRUST-AS-A-SERVICE',d:'TaaS — încrederea ca serviciu verificabil, nu ca promisiune',cat:'a2a'},
   {c:'COGNITIVE-AS-A-SERVICE',d:'CaaS — orchestrare cognitivă ca serviciu, nu API call',cat:'a2a'},
+  {c:'META-CONSENS-AGIK',d:'Meta-Consens AGIK — smart contract Tezos consens multi-agent siguranță copii',cat:'a2a'},
 ];
 
 const CATS = {
@@ -665,7 +666,7 @@ const T = {
     kpi_ip:'IP Entries', kpi_agents:'A2A Agents', kpi_products:'SaaS Products', kpi_paradigms:'New Paradigms',
     cmp_cap:'Capability', cmp_meaning:'Meaning Verification', cmp_intent:'Intent Verification',
     cmp_cognitive:'Cognitive Need Detection', cmp_ip:'IP on Blockchain',
-    reg_title:'IP Registry', reg_desc:'100 intellectual property assets registered on Tezos blockchain. Each with SHA-256 hash and immutable timestamp.',
+    reg_title:'IP Registry', reg_desc:'101 intellectual property assets registered on Tezos blockchain. Each with SHA-256 hash and immutable timestamp.',
     ag_title:'Agent-to-Agent Architecture', ag_desc:'9 autonomous agents on Google A2A protocol (JSON-RPC 2.0), organized across 5 abstraction layers. Maestru Agent orchestrates cognitively, not just routes.',
     ag_detail:'Agent Details',
     l4_name:'Cognitive Orchestration', l3_name:'Security & Heritage', l2_name:'Verification & Calibration',
@@ -683,7 +684,7 @@ const T = {
     par_r5:'Transparency?', par_r5a:'Concordance % publicly visible', par_r5b:'Black box',
     eco_title:'The ami* Ecosystem', eco_desc:'11 SaaS products built on a single shared engine (SharedAIEngine). Each product serves a specific niche, all share HASN security and TVE verification.',
     bc_title:'Blockchain Proof', bc_desc:'All intellectual property assets registered on Tezos mainnet. SHA-256 hash, immutable timestamp, verifiable by anyone, forever.',
-    bc_live:'LIVE', bc_immutable:'IMMUTABLE', bc_v3_note:'Will be registered after on-chain confirmation of entries #66-100',
+    bc_live:'LIVE', bc_immutable:'IMMUTABLE', bc_v3_note:'Will be registered after on-chain confirmation of entries #66-101',
     bc_how:'How to Verify',
     bc_s1:'Open the <a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX" style="color:var(--blue)" target="_blank" rel="noopener">contract on TzKT</a>',
     bc_s2:'Check the storage — each entry has a SHA-256 hash',
@@ -708,7 +709,7 @@ let activeFilter = 'all';
 
 function renderFilters() {
   const bar = document.getElementById('filterBar');
-  let html = '<button class="filter-btn active" onclick="setFilter(\'all\',this)">Toate (100)</button>';
+  let html = '<button class="filter-btn active" onclick="setFilter(\'all\',this)">Toate (101)</button>';
   for (const [k, v] of Object.entries(CATS)) {
     const count = ENTRIES.filter(e => e.cat === k).length;
     html += `<button class="filter-btn" onclick="setFilter('${k}',this)">${v.label} (${count})</button>`;
@@ -739,7 +740,7 @@ function filterEntries() {
       <span class="badge" style="background:${cat.color}15;color:${cat.color}">${cat.label.split(' ')[0]}</span>
     </div>`;
   }).join('');
-  document.getElementById('regCount').textContent = `${filtered.length} / 100 entries`;
+  document.getElementById('regCount').textContent = `${filtered.length} / 101 entries`;
 }
 
 // === RENDER TAXONOMY BARS ===
