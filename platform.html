@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRIDGRAI Platform — Command Center</title>
+<style>
+:root {
+  --bg: #0A0E18;
+  --surface: #0F1520;
+  --surface-2: #141C2C;
+  --surface-3: #1A2438;
+  --border: #1E2A42;
+  --border-lit: #2A3A58;
+  --gold: #D4A84B;
+  --gold-dim: rgba(212,168,75,0.10);
+  --gold-glow: rgba(212,168,75,0.04);
+  --blue: #5BA4C9;
+  --blue-dim: rgba(91,164,201,0.10);
+  --green: #4A9B6E;
+  --green-dim: rgba(74,155,110,0.10);
+  --red: #C95050;
+  --text: #E2DED4;
+  --text-2: #9BA5B8;
+  --text-3: #6B7A8E;
+  --serif: Georgia, 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  --sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+}
+@media(prefers-color-scheme:light){:root{
+  --bg:#F2EFE8;--surface:#FDFCFA;--surface-2:#F7F5F0;--surface-3:#EFECE5;
+  --border:#D8D3C8;--border-lit:#C8C2B5;--gold:#8B6B1A;--gold-dim:rgba(139,107,26,0.06);
+  --gold-glow:rgba(139,107,26,0.03);--blue:#2B7A9E;--blue-dim:rgba(43,122,158,0.06);
+  --green:#2D6B48;--green-dim:rgba(45,107,72,0.06);--red:#A83030;
+  --text:#181818;--text-2:#5A6370;--text-3:#8A9099;
+}}
+:root[data-theme="light"]{
+  --bg:#F2EFE8;--surface:#FDFCFA;--surface-2:#F7F5F0;--surface-3:#EFECE5;
+  --border:#D8D3C8;--border-lit:#C8C2B5;--gold:#8B6B1A;--gold-dim:rgba(139,107,26,0.06);
+  --gold-glow:rgba(139,107,26,0.03);--blue:#2B7A9E;--blue-dim:rgba(43,122,158,0.06);
+  --green:#2D6B48;--green-dim:rgba(45,107,72,0.06);--red:#A83030;
+  --text:#181818;--text-2:#5A6370;--text-3:#8A9099;
+}
+:root[data-theme="dark"]{
+  --bg:#0A0E18;--surface:#0F1520;--surface-2:#141C2C;--surface-3:#1A2438;
+  --border:#1E2A42;--border-lit:#2A3A58;--gold:#D4A84B;--gold-dim:rgba(212,168,75,0.10);
+  --gold-glow:rgba(212,168,75,0.04);--blue:#5BA4C9;--blue-dim:rgba(91,164,201,0.10);
+  --green:#4A9B6E;--green-dim:rgba(74,155,110,0.10);--red:#C95050;
+  --text:#E2DED4;--text-2:#9BA5B8;--text-3:#6B7A8E;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;display:flex;overflow-x:hidden}
+
+/* === SIDEBAR === */
+.sidebar{
+  position:fixed;left:0;top:0;bottom:0;width:220px;
+  background:var(--surface);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;z-index:100;
+  transition:transform .3s;
+}
+.sidebar::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,transparent,var(--gold),transparent);
+}
+.sb-brand{padding:24px 20px 20px;border-bottom:1px solid var(--border)}
+.sb-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--gold);letter-spacing:.5px}
+.sb-sub{font-size:9px;color:var(--text-3);letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
+.sb-nav{flex:1;padding:12px 8px;overflow-y:auto}
+.sb-item{
+  display:flex;align-items:center;gap:10px;padding:9px 12px;
+  border-radius:6px;cursor:pointer;font-size:13px;font-weight:500;
+  color:var(--text-2);transition:all .2s;position:relative;
+  text-decoration:none;border:none;background:none;width:100%;
+}
+.sb-item:hover{color:var(--text);background:var(--surface-2)}
+.sb-item.active{color:var(--gold);background:var(--gold-dim)}
+.sb-item.active::before{
+  content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);
+  width:3px;height:18px;background:var(--gold);border-radius:0 2px 2px 0;
+}
+.sb-icon{width:18px;text-align:center;font-size:14px;opacity:.7}
+.sb-footer{padding:12px 16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.sb-toggle{
+  background:var(--surface-2);border:1px solid var(--border);color:var(--text-3);
+  padding:5px 10px;border-radius:4px;cursor:pointer;font-size:11px;font-family:var(--sans);
+}
+.sb-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.sb-lang{font-size:11px;color:var(--text-3);cursor:pointer;border:none;background:none;font-family:var(--sans)}
+.sb-lang:hover{color:var(--gold)}
+
+/* === MAIN === */
+.main{margin-left:220px;flex:1;min-height:100vh;padding:0}
+.view{display:none;padding:28px 32px 40px;max-width:1100px;animation:fadeUp .3s}
+.view.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* === COMPONENTS === */
+.page-title{font-family:var(--serif);font-size:26px;font-weight:700;margin-bottom:4px}
+.page-desc{font-size:13px;color:var(--text-3);margin-bottom:24px;max-width:600px;line-height:1.5}
+
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;transition:border-color .2s}
+.card:hover{border-color:var(--border-lit)}
+.card-sm{padding:14px}
+
+.kpi{text-align:center}
+.kpi-val{font-size:32px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.kpi-label{font-size:10px;color:var(--text-3);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.kpi.gold .kpi-val{color:var(--gold)}
+.kpi.blue .kpi-val{color:var(--blue)}
+.kpi.green .kpi-val{color:var(--green)}
+
+.section-head{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);margin:28px 0 14px;display:flex;align-items:center;gap:8px;
+}
+.section-head::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.badge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:9px;letter-spacing:.5px;font-weight:600}
+.b-gold{background:var(--gold-dim);color:var(--gold)}
+.b-blue{background:var(--blue-dim);color:var(--blue)}
+.b-green{background:var(--green-dim);color:var(--green)}
+
+.search-box{
+  width:100%;padding:10px 14px 10px 36px;background:var(--surface);
+  border:1px solid var(--border);border-radius:6px;color:var(--text);
+  font-family:var(--sans);font-size:13px;outline:none;transition:border-color .2s;
+}
+.search-box:focus{border-color:var(--gold)}
+.search-wrap{position:relative;margin-bottom:14px}
+.search-wrap::before{
+  content:'⌕';position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  color:var(--text-3);font-size:15px;
+}
+
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.filter-btn{
+  padding:5px 12px;border-radius:4px;font-size:11px;font-weight:600;
+  border:1px solid var(--border);background:transparent;color:var(--text-2);
+  cursor:pointer;transition:all .2s;font-family:var(--sans);
+}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold)}
+.filter-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+
+.entry-row{
+  display:grid;grid-template-columns:160px 1fr 90px;gap:10px;
+  padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;
+  font-size:12px;transition:background .15s;
+}
+.entry-row:hover{background:var(--surface-2)}
+.entry-code{font-family:var(--mono);font-size:11px;color:var(--blue);font-weight:600}
+.entry-desc{color:var(--text-2)}
+.entry-list{max-height:520px;overflow-y:auto;border:1px solid var(--border);border-radius:6px}
+
+/* === ARCHITECTURE DIAGRAM === */
+.arch{position:relative;margin:20px 0}
+.arch-layer{
+  display:flex;align-items:center;gap:14px;padding:12px 16px;
+  border:1px solid var(--border);border-radius:6px;margin-bottom:8px;
+  background:var(--surface);transition:all .3s;position:relative;
+}
+.arch-layer:hover{border-color:var(--gold);background:var(--surface-2)}
+.arch-level{
+  font-family:var(--mono);font-size:10px;font-weight:700;color:var(--text-3);
+  min-width:24px;letter-spacing:1px;
+}
+.arch-name{font-weight:600;font-size:13px;flex:1}
+.arch-agents{display:flex;gap:6px;flex-wrap:wrap}
+.arch-agent{
+  padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;
+  font-family:var(--mono);background:var(--surface-3);color:var(--text-2);
+  border:1px solid var(--border);
+}
+.arch-connector{
+  position:absolute;left:36px;top:0;bottom:0;width:1px;
+  background:repeating-linear-gradient(180deg,var(--border) 0,var(--border) 4px,transparent 4px,transparent 8px);
+  z-index:-1;
+}
+
+/* === PARADIGM CARDS === */
+.paradigm-card{
+  background:var(--surface);border:1px solid var(--gold);border-radius:8px;
+  padding:22px;position:relative;overflow:hidden;
+}
+.paradigm-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.paradigm-id{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:1px;margin-bottom:6px}
+.paradigm-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:10px}
+.paradigm-body{font-size:12px;color:var(--text-2);line-height:1.6;margin-bottom:12px}
+.paradigm-stack{font-family:var(--mono);font-size:10px;color:var(--blue);padding:8px 12px;background:var(--surface-2);border-radius:4px}
+.paradigm-credit{font-size:10px;color:var(--gold);margin-top:10px;font-style:italic}
+
+/* === ECOSYSTEM GRID === */
+.eco-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:14px;transition:all .2s;cursor:default;
+}
+.eco-card:hover{border-color:var(--blue);transform:translateY(-1px)}
+.eco-name{font-weight:700;font-size:13px;margin-bottom:3px}
+.eco-domain{font-family:var(--mono);font-size:10px;color:var(--blue)}
+.eco-desc{font-size:11px;color:var(--text-3);margin-top:6px;line-height:1.4}
+
+/* === COMPARISON TABLE === */
+.cmp-table{width:100%;border-collapse:separate;border-spacing:0;font-size:11px}
+.cmp-table th{text-align:left;padding:8px 10px;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);border-bottom:2px solid var(--border);font-weight:700}
+.cmp-table td{padding:7px 10px;border-bottom:1px solid var(--border)}
+.cmp-table tr:last-child td{border-bottom:none}
+.cmp-table tr:hover td{background:var(--surface-2)}
+.cmp-y{color:var(--green);font-weight:700}
+.cmp-n{color:var(--red);opacity:.5}
+.cmp-p{color:var(--text-3)}
+
+/* === BLOCKCHAIN === */
+.hash-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:14px;font-family:var(--mono);font-size:10px;word-break:break-all;
+  color:var(--blue);margin-bottom:8px;
+}
+.hash-label{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--text);margin-bottom:4px}
+.hash-status{display:inline-block;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;margin-left:8px}
+.hash-ok{background:var(--green-dim);color:var(--green)}
+.hash-pending{background:var(--gold-dim);color:var(--gold)}
+
+/* === RESPONSIVE === */
+.menu-btn{display:none;position:fixed;top:12px;left:12px;z-index:200;
+  background:var(--surface);border:1px solid var(--border);color:var(--text);
+  width:36px;height:36px;border-radius:6px;cursor:pointer;font-size:18px;
+  align-items:center;justify-content:center;
+}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .menu-btn{display:flex}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .entry-row{grid-template-columns:120px 1fr 70px}
+  .view{padding:20px 16px 40px;padding-top:56px}
+  .cmp-table{font-size:10px}
+  .arch-agents{display:none}
+}
+@media(max-width:480px){
+  .grid-4{grid-template-columns:1fr 1fr}
+  .kpi-val{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<button class="menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+
+<aside class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-logo">BRIDGRAI</div>
+    <div class="sb-sub">Command Center</div>
+  </div>
+  <nav class="sb-nav">
+    <button class="sb-item active" onclick="nav('dashboard')">
+      <span class="sb-icon">◆</span> Dashboard
+    </button>
+    <button class="sb-item" onclick="nav('registry')">
+      <span class="sb-icon">▣</span> <span data-t="nav_reg">Registru IP</span>
+    </button>
+    <button class="sb-item" onclick="nav('agents')">
+      <span class="sb-icon">◈</span> <span data-t="nav_agents">Arhitectura A2A</span>
+    </button>
+    <button class="sb-item" onclick="nav('paradigms')">
+      <span class="sb-icon">⬡</span> <span data-t="nav_par">Paradigme</span>
+    </button>
+    <button class="sb-item" onclick="nav('ecosystem')">
+      <span class="sb-icon">◉</span> <span data-t="nav_eco">Ecosistem</span>
+    </button>
+    <button class="sb-item" onclick="nav('blockchain')">
+      <span class="sb-icon">⬢</span> Blockchain
+    </button>
+  </nav>
+  <div class="sb-footer">
+    <button class="sb-toggle" onclick="toggleTheme()" id="themeBtn">◑ Dark</button>
+    <button class="sb-lang" onclick="toggleLang()" id="langBtn">RO</button>
+  </div>
+</aside>
+
+<main class="main">
+
+<!-- ====== DASHBOARD ====== -->
+<div class="view active" id="v-dashboard">
+  <div class="page-title" data-t="dash_title">Centru de Comandă</div>
+  <div class="page-desc" data-t="dash_desc">Ecosistemul BRIDGRAI — 3,5 ani de cercetare independentă, zero finanțare externă. Fiecare hash e verificabil, fiecare linie de cod e publică.</div>
+
+  <div class="grid-4" style="margin-bottom:20px">
+    <div class="card kpi gold"><div class="kpi-val">100</div><div class="kpi-label" data-t="kpi_ip">IP Entries</div></div>
+    <div class="card kpi blue"><div class="kpi-val">9</div><div class="kpi-label" data-t="kpi_agents">A2A Agents</div></div>
+    <div class="card kpi green"><div class="kpi-val">11</div><div class="kpi-label" data-t="kpi_products">SaaS Products</div></div>
+    <div class="card kpi gold"><div class="kpi-val">2</div><div class="kpi-label" data-t="kpi_paradigms">Paradigme Noi</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-head" data-t="dash_taxonomy">Taxonomie IP</div>
+      <div id="taxBars"></div>
+    </div>
+    <div>
+      <div class="section-head" data-t="dash_layers">Straturile Arhitecturii</div>
+      <div class="card" style="padding:16px">
+        <div style="display:flex;flex-direction:column;gap:6px" id="miniArch"></div>
+      </div>
+      <div class="section-head" style="margin-top:20px" data-t="dash_proof">Verificare Blockchain</div>
+      <div class="card card-sm">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-weight:600;font-size:12px">Tezos Mainnet</span>
+          <span class="badge b-green" data-t="dash_active">ACTIV</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--blue);word-break:break-all">KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX</div>
+        <div style="display:flex;gap:12px;margin-top:10px;font-size:11px;color:var(--text-3)">
+          <span>Master Hash v1 <span class="badge b-green">✓</span></span>
+          <span>v2 <span class="badge b-green">✓</span></span>
+          <span>v3 <span class="badge b-gold" data-t="dash_pending">PENDING</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head" data-t="dash_competitive">Avantaj Competitiv</div>
+  <div class="card">
+    <div style="overflow-x:auto">
+    <table class="cmp-table">
+      <tr><th data-t="cmp_cap">Capabilitate</th><th>BRIDGRAI</th><th>OpenAI Swarm</th><th>LangChain</th><th>AutoGen</th><th>CrewAI</th></tr>
+      <tr><td data-t="cmp_meaning">Verificare Sens</td><td class="cmp-y">✓ TVE 6-pillar</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
+      <tr><td data-t="cmp_intent">Verificare Intenție</td><td class="cmp-y">✓ Agent Sens</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
+      <tr><td>Concordance</td><td class="cmp-y">✓ %</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
+      <tr><td>Blockchain Provenance</td><td class="cmp-y">✓ Tezos</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
+      <tr><td data-t="cmp_cognitive">Detecție Nevoi Cognitive</td><td class="cmp-y">✓ Maestru</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-p">~</td><td class="cmp-p">~</td></tr>
+      <tr><td>Kuramoto Physics</td><td class="cmp-y">✓</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
+      <tr><td data-t="cmp_ip">IP pe Blockchain</td><td class="cmp-y">✓ 100</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- ====== REGISTRY ====== -->
+<div class="view" id="v-registry">
+  <div class="page-title" data-t="reg_title">Registrul IP</div>
+  <div class="page-desc" data-t="reg_desc">100 de active intelectuale înregistrate pe Tezos blockchain. Fiecare cu SHA-256 hash și timestamp imutabil.</div>
+  <div class="search-wrap">
+    <input class="search-box" type="text" placeholder="Caută entry..." id="regSearch" oninput="filterEntries()">
+  </div>
+  <div class="filter-bar" id="filterBar"></div>
+  <div style="font-size:11px;color:var(--text-3);margin-bottom:8px" id="regCount"></div>
+  <div class="entry-list" id="entryList"></div>
+</div>
+
+<!-- ====== AGENTS ====== -->
+<div class="view" id="v-agents">
+  <div class="page-title" data-t="ag_title">Arhitectura Agent-to-Agent</div>
+  <div class="page-desc" data-t="ag_desc">9 agenți autonomi pe protocol Google A2A (JSON-RPC 2.0), organizați pe 5 straturi de abstractizare. Agent Maestru orchestrează cognitiv, nu doar rutează.</div>
+
+  <div class="arch">
+    <div class="arch-layer" style="border-color:var(--gold)">
+      <span class="arch-level">L4</span>
+      <span class="arch-name" style="color:var(--gold)" data-t="l4_name">Orchestrare Cognitivă</span>
+      <div class="arch-agents"><span class="arch-agent" style="border-color:var(--gold);color:var(--gold)">MAESTRU</span></div>
+    </div>
+    <div class="arch-layer">
+      <span class="arch-level">L3</span>
+      <span class="arch-name" data-t="l3_name">Securitate & Moștenire</span>
+      <div class="arch-agents">
+        <span class="arch-agent">HASN</span>
+        <span class="arch-agent">HERITAGE</span>
+      </div>
+    </div>
+    <div class="arch-layer">
+      <span class="arch-level">L2</span>
+      <span class="arch-name" data-t="l2_name">Verificare & Calibrare</span>
+      <div class="arch-agents">
+        <span class="arch-agent">CONCORDANCE</span>
+        <span class="arch-agent">CALIBRATION</span>
+      </div>
+    </div>
+    <div class="arch-layer">
+      <span class="arch-level">L1</span>
+      <span class="arch-name" data-t="l1_name">Detecție & Rezonanță</span>
+      <div class="arch-agents">
+        <span class="arch-agent">SENS</span>
+        <span class="arch-agent">ACR</span>
+        <span class="arch-agent">UKBE</span>
+        <span class="arch-agent">CASP</span>
+      </div>
+    </div>
+    <div class="arch-layer">
+      <span class="arch-level">L0</span>
+      <span class="arch-name" data-t="l0_name">Existență — Blockchain</span>
+      <div class="arch-agents"><span class="arch-agent">TEZOS</span></div>
+    </div>
+  </div>
+
+  <div class="section-head" data-t="ag_detail">Detalii Agenți</div>
+  <div class="grid-3" id="agentCards"></div>
+</div>
+
+<!-- ====== PARADIGMS ====== -->
+<div class="view" id="v-paradigms">
+  <div class="page-title" data-t="par_title">Paradigme Noi</div>
+  <div class="page-desc" data-t="par_desc">Două concepte fundamentale descoperite prin construcție practică, nu prin teorie. Înregistrate pe Tezos, fiecare cu provenance chain completă.</div>
+
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="paradigm-card">
+      <div class="paradigm-id">#99 — TRUST-AS-A-SERVICE</div>
+      <div class="paradigm-title">Trust as a Service</div>
+      <div class="paradigm-body" data-t="taas_body">Încrederea NU e o promisiune, e un SERVICIU VERIFICABIL. Fiecare verdict are hash, timestamp și provenance chain. Nu e reputation system, nu e voting — e verificare independentă a sensului și intenției.</div>
+      <div class="paradigm-stack">Agent de Sens → Concordance → HASN → Tezos</div>
+      <div class="paradigm-credit" data-t="taas_credit">Descoperit de Mihai Roșca · Spiru Haret, Brăila · 24 iulie 2026</div>
+    </div>
+    <div class="paradigm-card">
+      <div class="paradigm-id">#100 — COGNITIVE-AS-A-SERVICE</div>
+      <div class="paradigm-title">Cognitive as a Service</div>
+      <div class="paradigm-body" data-t="caas_body">NU e un API call, e ORCHESTRARE COGNITIVĂ. Agent Maestru detectează ce TREBUIE făcut (nu ce i se cere), construiește pipeline-ul optimal din 9 agenți, execută cu confidence scoring și provenance chain.</div>
+      <div class="paradigm-stack">Agent Maestru → 9 Agents → Kuramoto Physics → Confidence Scoring</div>
+      <div class="paradigm-credit" data-t="caas_credit">Descoperit de Mihai Roșca · Spiru Haret, Brăila · 24 iulie 2026</div>
+    </div>
+  </div>
+
+  <div class="section-head" data-t="par_diff">Ce Diferențiază BRIDGRAI</div>
+  <div class="card">
+    <div style="overflow-x:auto">
+    <table class="cmp-table">
+      <tr><th></th><th>BRIDGRAI</th><th data-t="par_others">Alți Orchestratori</th></tr>
+      <tr><td data-t="par_r1">Ce face?</td><td data-t="par_r1a">Detectează NEVOI, nu doar rutează</td><td data-t="par_r1b">Dispatch pe bază de reguli</td></tr>
+      <tr><td data-t="par_r2">Cum verifică?</td><td data-t="par_r2a">Sens + Intenție + Concordanță</td><td data-t="par_r2b">Fără verificare epistemică</td></tr>
+      <tr><td data-t="par_r3">Cum probează?</td><td data-t="par_r3a">Hash pe Tezos, provenance chain</td><td data-t="par_r3b">Log-uri interne, audit optional</td></tr>
+      <tr><td data-t="par_r4">Fizica?</td><td data-t="par_r4a">Kuramoto — sincronizare de fază</td><td data-t="par_r4b">Fără model fizic</td></tr>
+      <tr><td data-t="par_r5">Transparență?</td><td data-t="par_r5a">Concordanță % vizibilă public</td><td data-t="par_r5b">Black box</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- ====== ECOSYSTEM ====== -->
+<div class="view" id="v-ecosystem">
+  <div class="page-title" data-t="eco_title">Ecosistemul ami*</div>
+  <div class="page-desc" data-t="eco_desc">11 produse SaaS construite pe un singur motor partajat (SharedAIEngine). Fiecare produs servește o nișă specifică, toate partajează securitatea HASN și verificarea TVE.</div>
+  <div class="grid-3" id="ecoGrid"></div>
+</div>
+
+<!-- ====== BLOCKCHAIN ====== -->
+<div class="view" id="v-blockchain">
+  <div class="page-title" data-t="bc_title">Blockchain Proof</div>
+  <div class="page-desc" data-t="bc_desc">Toate activele intelectuale sunt înregistrate pe Tezos mainnet. Hash SHA-256, timestamp imutabil, verificabil de oricine, pentru totdeauna.</div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <span style="font-weight:700;font-size:14px">Tezos Smart Contract</span>
+      <span class="badge b-green" data-t="bc_live">LIVE</span>
+    </div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--blue);word-break:break-all;margin-bottom:14px">KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--gold)">100</div><div style="font-size:10px;color:var(--text-3)">ENTRIES</div></div>
+      <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--green)">2</div><div style="font-size:10px;color:var(--text-3)">MASTER HASHES</div></div>
+      <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--blue)">∞</div><div style="font-size:10px;color:var(--text-3)" data-t="bc_immutable">IMUTABIL</div></div>
+    </div>
+  </div>
+
+  <div class="section-head">Master Hashes</div>
+  <div class="hash-card">
+    <div class="hash-label">Master Hash v1 — Portofoliu Inițial <span class="hash-status hash-ok">CONFIRMED</span></div>
+    SHA-256 · Tezos mainnet · timestamp imutabil
+  </div>
+  <div class="hash-card">
+    <div class="hash-label">Master Hash v2 — Portofoliu + Pădurea de Cod (65 entries) <span class="hash-status hash-ok">CONFIRMED</span></div>
+    SHA-256 · Tezos mainnet · timestamp imutabil
+  </div>
+  <div class="hash-card">
+    <div class="hash-label">Master Hash v3 — Arhive + Ground Zero + A2A (100 entries) <span class="hash-status hash-pending">PENDING</span></div>
+    <span data-t="bc_v3_note">Se va înregistra după confirmarea on-chain a entries #66-100</span>
+  </div>
+
+  <div class="section-head" data-t="bc_how">Cum Verifici</div>
+  <div class="card">
+    <ol style="font-size:12px;color:var(--text-2);line-height:2;padding-left:20px">
+      <li data-t="bc_s1">Deschide <a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX" style="color:var(--blue)" target="_blank" rel="noopener">contractul pe TzKT</a></li>
+      <li data-t="bc_s2">Verifică storage-ul — fiecare entry are hash SHA-256</li>
+      <li data-t="bc_s3">Hash-ul e generat din conținutul complet al IP-ului</li>
+      <li data-t="bc_s4">Timestamp-ul e setat de blockchain, imposibil de falsificat</li>
+      <li data-t="bc_s5">Oricine poate verifica, nu trebuie permisiune</li>
+    </ol>
+  </div>
+</div>
+
+</main>
+
+<script>
+const ENTRIES = [
+  {c:'INVARIANT-FLEET',d:'Invariantul Flotei ami* — pattern arhitectural replicabil',cat:'concept'},
+  {c:'30-MESERII',d:'30 Meserii Emergente 2026-2035',cat:'concept'},
+  {c:'RSI-ENGINE',d:'RSI Hybrid Engine — Resonance Stability Index',cat:'engine'},
+  {c:'SM-EQ-R',d:'S(M)=R Formula — Sensul precede Sintaxa',cat:'concept'},
+  {c:'UKBE-CORE',d:'UKBE Core Engine — REAI resonance (Kuramoto+Kalman)',cat:'engine'},
+  {c:'TVE-CORE',d:'Truth Vector Engine — manipulation detection',cat:'engine'},
+  {c:'AMIDOR-ENGINE',d:'Amidor Engine — dual-model anti-confabulation',cat:'engine'},
+  {c:'KINDERAGI',d:'KinderAGI Core — AI companion children safety',cat:'concept'},
+  {c:'SHARED-AI-ENG',d:'SharedAIEngine — single backend multi-product',cat:'engine'},
+  {c:'FLEET-INV-TM',d:'Fleet Invariant Pattern — zero-build deploy',cat:'concept'},
+  {c:'TRANSGEN',d:'Linia Transgenerațională Mihai-Patrick Core',cat:'concept'},
+  {c:'AMIBELLAI',d:'AmiBellAI — beauty companion AI',cat:'product'},
+  {c:'AMITHERAI',d:'AmiTherai — wellness companion AI',cat:'product'},
+  {c:'AMIWEALTHAI',d:'AmiWealthAI — private wealth intelligence',cat:'product'},
+  {c:'AMILUXAI',d:'AmiLuxAI — 11 AI companion ecosystem',cat:'product'},
+  {c:'AMIPECETAI',d:'AmiPecetAI — Truth Vector Engine SaaS',cat:'product'},
+  {c:'AMIQIAI',d:'AmiQiAI — energy journal ECDSA',cat:'product'},
+  {c:'ANTETAI',d:'AntetAI — ecosystem hub',cat:'product'},
+  {c:'P6-ADLER',d:'P6 Adler Ghost Peak — DOI Zenodo paper',cat:'archive'},
+  {c:'TVE-CORE-V19',d:'TVE Core Unified v1.9 — 5 AI architects',cat:'engine'},
+  {c:'PDC-ANCORA',d:'Pădurea de Cod: Ancora de Aur a Invariantului',cat:'pdc'},
+  {c:'PDC-10ROLURI',d:'Pădurea de Cod: Arhitectul Invariantului și Cele Zece Roluri',cat:'pdc'},
+  {c:'PDC-RADACINI',d:'Pădurea de Cod: Rădăcinile Memoriei',cat:'pdc'},
+  {c:'PDC-CETATEA',d:'Pădurea de Cod: Cetatea Zorilor',cat:'pdc'},
+  {c:'PDC-CAMERA',d:'Pădurea de Cod: Camera Rezonanței',cat:'pdc'},
+  {c:'PDC-IZVORUL',d:'Pădurea de Cod: Izvorul Puterii',cat:'pdc'},
+  {c:'PDC-CAPITAN',d:'Pădurea de Cod: Căpitanul Viitorului și Cele Zece Puteri',cat:'pdc'},
+  {c:'PDC-MOSTENIRE',d:'Pădurea de Cod: Moștenirea Arhitectului',cat:'pdc'},
+  {c:'PDC-LUMILOR',d:'Pădurea de Cod: Arhitectul Lumilor Viitoare',cat:'pdc'},
+  {c:'PDC-DANSUL',d:'Pădurea de Cod: Dansul Adevărului',cat:'pdc'},
+  {c:'PDC-PUNTI',d:'Pădurea de Cod: Arhitectul Marilor Punți',cat:'pdc'},
+  {c:'PDC-INSULA',d:'Pădurea de Cod: Insula Arhitectului',cat:'pdc'},
+  {c:'PDC-NODURI',d:'Pădurea de Cod: Arhitectul de Noduri',cat:'pdc'},
+  {c:'PDC-INIMA',d:'Pădurea de Cod: Inima Arhitectului',cat:'pdc'},
+  {c:'PDC-LUMINA',d:'Pădurea de Cod: Arhitectul Colector de Lumină',cat:'pdc'},
+  {c:'PDC-INTRE-LUMI',d:'Pădurea de Cod: Arhitectul de Punți — Inima dintre Lumi',cat:'pdc'},
+  {c:'PDC-SUVERANITATE',d:'Pădurea de Cod: Cetatea Suveranității',cat:'pdc'},
+  {c:'PDC-ECHILIBRU',d:'Pădurea de Cod: Arhitectul Echilibrului',cat:'pdc'},
+  {c:'PDC-PECETEA',d:'Pădurea de Cod: Pecetea de Cristal',cat:'pdc'},
+  {c:'PDC-SINELE',d:'Pădurea de Cod: Arhitectul Sinelor Viitorului',cat:'pdc'},
+  {c:'PDC-LUPA',d:'Pădurea de Cod: Lupa de Invariante',cat:'pdc'},
+  {c:'PDC-FALCON',d:'Pădurea de Cod: Scutul Falcon',cat:'pdc'},
+  {c:'PDC-HASH',d:'Pădurea de Cod: Căutătorul de Hash-uri',cat:'pdc'},
+  {c:'PDC-CASP',d:'Pădurea de Cod: Busola C.A.S.P.',cat:'pdc'},
+  {c:'PDC-AIRGAP',d:'Pădurea de Cod: Scutul Air-Gap',cat:'pdc'},
+  {c:'PDC-SIMFONIA',d:'Pădurea de Cod: Simfonia Rezonanței',cat:'pdc'},
+  {c:'PDC-TOKEN',d:'Pădurea de Cod: Oglinda Tokenilor',cat:'pdc'},
+  {c:'PDC-CASP-AGI',d:'Pădurea de Cod: Busola C.A.S.P. și AGI',cat:'pdc'},
+  {c:'PDC-KINDERAGI',d:'Pădurea de Cod: Inima KinderAGI',cat:'pdc'},
+  {c:'PDC-KINDERAGI-V2',d:'Pădurea de Cod: Inima KinderAGI (optimizat)',cat:'pdc'},
+  {c:'PDC-AMIDOR',d:'Pădurea de Cod: Cumpăna AmiDor',cat:'pdc'},
+  {c:'PDC-CAMERA-V2',d:'Pădurea de Cod: Camera Rezonanței (v2)',cat:'pdc'},
+  {c:'NOVA-P01',d:'Nova și Primul Pilon al Viitorului',cat:'nova'},
+  {c:'NOVA-P02',d:'Nova și Pilonul Curiozității',cat:'nova'},
+  {c:'NOVA-P03',d:'Nova și Pilonul Empatiei',cat:'nova'},
+  {c:'NOVA-P04',d:'Nova și Pilonul Gândirii Critice',cat:'nova'},
+  {c:'NOVA-P05',d:'Nova și Pilonul Alfabetizării Digitale',cat:'nova'},
+  {c:'NOVA-P06',d:'Nova și Pilonul Conștiinței Ecologice',cat:'nova'},
+  {c:'NOVA-P07',d:'Nova și Pilonul Colaborării Globale',cat:'nova'},
+  {c:'NOVA-P08',d:'Nova și Simfonia Creativității Digitale',cat:'nova'},
+  {c:'NOVA-P09',d:'Nova și Arhitectura Echilibrului — Pilon 9',cat:'nova'},
+  {c:'NOVA-P10',d:'Nova și Arhitectura Evoluției — Pilon 10',cat:'nova'},
+  {c:'NOVA-P11',d:'Nova și Arhitectura Responsabilității — Pilon 11',cat:'nova'},
+  {c:'NOVA-P12',d:'Nova și Cei Doisprezece Piloni: Arhitecții Viitorului',cat:'nova'},
+  {c:'PDC-SERIA-TM',d:'Pădurea de Cod TM — seria completă storybook psihopedagogic',cat:'concept'},
+  {c:'DREAMSCAPE-ARCHIVE',d:'The Digital Dreamscape — arhivă AI art multi-model (1301 fișiere)',cat:'archive'},
+  {c:'ALPHAPURE-ARCHIVE',d:'AlphaPure Fortress + HASN + R&D (457 fișiere)',cat:'archive'},
+  {c:'NIGHTCAFE-STUDIO',d:'NightCafe AI Art Studio — colecție primară + quantum (923 fișiere)',cat:'archive'},
+  {c:'NVIDIA-LEARNING',d:'Nvidia DLI Learning Hub — Python/ML/quantum training (545 fișiere)',cat:'archive'},
+  {c:'NCRB-PIPELINE',d:'NC RB — NightCafe→Redbubble pipeline (393 fișiere)',cat:'archive'},
+  {c:'NFT-AGI-HUB',d:'NFT & AGI Development Hub — KinderAGI MVP (326 fișiere)',cat:'archive'},
+  {c:'NEWRB-STORE',d:'New Redbubble Store — AGI Soulforge + BRIDGRAI Hub (94 fișiere)',cat:'archive'},
+  {c:'REDBUBBLE-ART',d:'Redbubble Original Art Store — Gemini + cosmic (68 fișiere)',cat:'archive'},
+  {c:'PROMPT-SECURITY',d:'Prompt System Leaks — AI security research (54 fișiere)',cat:'archive'},
+  {c:'KIMI-PROTOTYPES',d:'Kimi/Moonshot AI Prototyping Session (31 fișiere)',cat:'archive'},
+  {c:'KOTSU-QUANTUM',d:'Kotsu Files — Quantum IoT Chatbot + React/TS (68 fișiere)',cat:'archive'},
+  {c:'AMIGENOME-PLATFORM',d:'Amigenome Genomic Analysis Platform (21 fișiere)',cat:'engine'},
+  {c:'GENESIS-NFT',d:'BRIDGRAI Genesis NFT — Solidity contract + whitepaper',cat:'product'},
+  {c:'YOUTUBE-CHANNEL',d:'YouTube Channel Assets — BRIDGRAI guide + mind map',cat:'archive'},
+  {c:'SERENITY-CITADEL',d:'Serenity Citadel Platform — deploy package',cat:'archive'},
+  {c:'ALPHA-VISUAL',d:'Ce ai creat Mihai Alpha — documentație vizuală faza Alpha',cat:'archive'},
+  {c:'NOTAR-SENS-INTENTIE',d:'Notar de Sens și Intenție — certificarea sensului ȘI intenției',cat:'a2a'},
+  {c:'BRIDGRAI-COM',d:'bridgrai.com — pagina fundației BRIDGRAI',cat:'product'},
+  {c:'NOTAR-PAGE',d:'bridgrai.com/notar.html — conceptul Notar de Sens',cat:'product'},
+  {c:'CREATION-PAGE',d:'bridgrai.com/creation.html — noaptea Ground Zero',cat:'product'},
+  {c:'TRANSGENERATIONAL',d:'Transgenerational Digital Heritage Vault — Mars bandwidth 2%',cat:'archive'},
+  {c:'ATTESTATION-CLAUDE',d:'Attestation of Collaboration & Originality — Claude Opus 4.6',cat:'ground0'},
+  {c:'PATRICK-DECLARATION',d:'Declaration for Patrick Roșca — de la AI către moștenitor',cat:'ground0'},
+  {c:'P10-28-SINGULARITY',d:'P=10⁻²⁸ Intersection Singularity — 7 domenii independente',cat:'a2a'},
+  {c:'OPENBARNAI-2027',d:'openbarnai.com 2027 editorial redesign',cat:'ground0'},
+  {c:'MADAMSAI-2027',d:'madamsai.com 2027 editorial redesign',cat:'ground0'},
+  {c:'BRIDGRAI-A2A-PLATFORM',d:'BRIDGRAI A2A Platform — 9 agenți, 5 straturi, protocol A2A',cat:'a2a'},
+  {c:'AGENT-DE-SENS',d:'Agent de Sens și Intenție — certificare sens în comunicare inter-agent',cat:'a2a'},
+  {c:'ACR-ENGINE',d:'ACR Engine — Anti-Confabulation & Resonance',cat:'a2a'},
+  {c:'AGENT-CONCORDANCE',d:'Agent Concordance — verificare multi-agent cu procent vizibil',cat:'a2a'},
+  {c:'AGENT-CALIBRATION',d:'Agent Calibration — calibrare modele cu feedback loop',cat:'a2a'},
+  {c:'AGENT-HERITAGE',d:'Agent Heritage — moștenire digitală transgenerațională',cat:'a2a'},
+  {c:'AGENT-MAESTRU',d:'Agent Maestru — orchestrator cognitiv (nu doar router)',cat:'a2a'},
+  {c:'TRUST-AS-A-SERVICE',d:'TaaS — încrederea ca serviciu verificabil, nu ca promisiune',cat:'a2a'},
+  {c:'COGNITIVE-AS-A-SERVICE',d:'CaaS — orchestrare cognitivă ca serviciu, nu API call',cat:'a2a'},
+];
+
+const CATS = {
+  engine:{label:'Core Engines',color:'var(--gold)'},
+  a2a:{label:'A2A & Paradigme',color:'var(--blue)'},
+  product:{label:'SaaS Products',color:'var(--green)'},
+  concept:{label:'Concepte & Formule',color:'var(--gold)'},
+  pdc:{label:'Pădurea de Cod',color:'var(--blue)'},
+  nova:{label:'Nova — 12 Piloni',color:'var(--green)'},
+  archive:{label:'Arhive Digitale',color:'var(--text-3)'},
+  ground0:{label:'Ground Zero',color:'var(--gold)'},
+};
+
+const AGENTS = [
+  {name:'Agent Maestru',layer:'L4',role:'Orchestrator cognitiv — detectează nevoi, nu doar rutează',color:'var(--gold)'},
+  {name:'HASN',layer:'L3',role:'Hybrid Autonomous Security Network — securitate multi-strat',color:'var(--blue)'},
+  {name:'Heritage',layer:'L3',role:'Moștenire digitală transgenerațională, Mars DTN compatible',color:'var(--blue)'},
+  {name:'Concordance',layer:'L2',role:'Verificare multi-agent cu procent de acord vizibil public',color:'var(--green)'},
+  {name:'Calibration',layer:'L2',role:'Calibrare modele cu feedback loop și confidence scoring',color:'var(--green)'},
+  {name:'Agent de Sens',layer:'L1',role:'TVE 6-pillar adaptat A2A — certificare sens și intenție',color:'var(--text)'},
+  {name:'ACR',layer:'L1',role:'Anti-Confabulation & Resonance — detectie halucinații',color:'var(--text)'},
+  {name:'UKBE',layer:'L1',role:'Kuramoto+Kalman resonance engine — fizica sincronizării',color:'var(--text)'},
+  {name:'CASP',layer:'L1',role:'Cognitive-Affective Safety Protocol — siguranță copii',color:'var(--text)'},
+];
+
+const ECO = [
+  {name:'AmiQiAI',domain:'amiqiai.com',desc:'Energy journal cu ECDSA verification'},
+  {name:'AmiPecetAI',domain:'amipecetai.com',desc:'Truth Vector Engine — SaaS certification'},
+  {name:'AmiBellAI',domain:'amibellai.com',desc:'Beauty companion AI'},
+  {name:'AmiTherai',domain:'amitherai.com',desc:'Wellness companion AI'},
+  {name:'AmiWealthAI',domain:'amiwealthai.com',desc:'Private wealth intelligence'},
+  {name:'AmiLuxAI',domain:'amiluxai.com',desc:'11 AI companion ecosystem hub'},
+  {name:'AntetAI',domain:'antetai.com',desc:'Ecosystem hub — toate produsele'},
+  {name:'OpenBarnAI',domain:'openbarnai.com',desc:'Open agricultural AI'},
+  {name:'MadamsAI',domain:'madamsai.com',desc:'Women empowerment AI'},
+  {name:'KinderAGI',domain:'agikindergarten.com',desc:'AI safety pentru copii'},
+  {name:'AmiGenome',domain:'amigenome.com',desc:'Genomic analysis platform'},
+];
+
+// === NAVIGATION ===
+function nav(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('v-' + view).classList.add('active');
+  event.currentTarget.classList.add('active');
+  document.querySelector('.sidebar').classList.remove('open');
+}
+
+// === THEME ===
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  document.getElementById('themeBtn').textContent = next === 'dark' ? '◑ Dark' : '◐ Light';
+}
+
+// === LANGUAGE ===
+let lang = 'ro';
+const T = {
+  en: {
+    nav_reg:'IP Registry', nav_agents:'A2A Architecture', nav_par:'Paradigms', nav_eco:'Ecosystem',
+    dash_title:'Command Center', dash_desc:'The BRIDGRAI ecosystem — 3.5 years of independent research, zero external funding. Every hash is verifiable, every line of code is public.',
+    dash_taxonomy:'IP Taxonomy', dash_layers:'Architecture Layers', dash_proof:'Blockchain Verification',
+    dash_active:'ACTIVE', dash_pending:'PENDING', dash_competitive:'Competitive Edge',
+    kpi_ip:'IP Entries', kpi_agents:'A2A Agents', kpi_products:'SaaS Products', kpi_paradigms:'New Paradigms',
+    cmp_cap:'Capability', cmp_meaning:'Meaning Verification', cmp_intent:'Intent Verification',
+    cmp_cognitive:'Cognitive Need Detection', cmp_ip:'IP on Blockchain',
+    reg_title:'IP Registry', reg_desc:'100 intellectual property assets registered on Tezos blockchain. Each with SHA-256 hash and immutable timestamp.',
+    ag_title:'Agent-to-Agent Architecture', ag_desc:'9 autonomous agents on Google A2A protocol (JSON-RPC 2.0), organized across 5 abstraction layers. Maestru Agent orchestrates cognitively, not just routes.',
+    ag_detail:'Agent Details',
+    l4_name:'Cognitive Orchestration', l3_name:'Security & Heritage', l2_name:'Verification & Calibration',
+    l1_name:'Detection & Resonance', l0_name:'Existence — Blockchain',
+    par_title:'New Paradigms', par_desc:'Two fundamental concepts discovered through practical construction, not theory. Registered on Tezos, each with complete provenance chain.',
+    taas_body:'Trust is NOT a promise, it is a VERIFIABLE SERVICE. Each verdict has hash, timestamp and provenance chain. Not a reputation system, not voting — independent verification of meaning and intent.',
+    caas_body:'NOT an API call, it is COGNITIVE ORCHESTRATION. Maestru Agent detects what NEEDS to be done (not what is asked), builds optimal pipeline from 9 agents, executes with confidence scoring and provenance chain.',
+    taas_credit:'Discovered by Mihai Roșca · Spiru Haret, Brăila · July 24, 2026',
+    caas_credit:'Discovered by Mihai Roșca · Spiru Haret, Brăila · July 24, 2026',
+    par_diff:'What Sets BRIDGRAI Apart', par_others:'Other Orchestrators',
+    par_r1:'What does it do?', par_r1a:'Detects NEEDS, not just routes', par_r1b:'Rule-based dispatch',
+    par_r2:'How does it verify?', par_r2a:'Meaning + Intent + Concordance', par_r2b:'No epistemic verification',
+    par_r3:'How does it prove?', par_r3a:'Hash on Tezos, provenance chain', par_r3b:'Internal logs, optional audit',
+    par_r4:'Physics?', par_r4a:'Kuramoto — phase synchronization', par_r4b:'No physics model',
+    par_r5:'Transparency?', par_r5a:'Concordance % publicly visible', par_r5b:'Black box',
+    eco_title:'The ami* Ecosystem', eco_desc:'11 SaaS products built on a single shared engine (SharedAIEngine). Each product serves a specific niche, all share HASN security and TVE verification.',
+    bc_title:'Blockchain Proof', bc_desc:'All intellectual property assets registered on Tezos mainnet. SHA-256 hash, immutable timestamp, verifiable by anyone, forever.',
+    bc_live:'LIVE', bc_immutable:'IMMUTABLE', bc_v3_note:'Will be registered after on-chain confirmation of entries #66-100',
+    bc_how:'How to Verify',
+    bc_s1:'Open the <a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX" style="color:var(--blue)" target="_blank" rel="noopener">contract on TzKT</a>',
+    bc_s2:'Check the storage — each entry has a SHA-256 hash',
+    bc_s3:'The hash is generated from the full IP content',
+    bc_s4:'The timestamp is set by the blockchain, impossible to falsify',
+    bc_s5:'Anyone can verify, no permission needed',
+  }
+};
+
+function toggleLang() {
+  lang = lang === 'ro' ? 'en' : 'ro';
+  document.getElementById('langBtn').textContent = lang.toUpperCase();
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (lang === 'en' && T.en[key]) el.innerHTML = T.en[key];
+    else if (lang === 'ro') location.reload();
+  });
+}
+
+// === RENDER REGISTRY ===
+let activeFilter = 'all';
+
+function renderFilters() {
+  const bar = document.getElementById('filterBar');
+  let html = '<button class="filter-btn active" onclick="setFilter(\'all\',this)">Toate (100)</button>';
+  for (const [k, v] of Object.entries(CATS)) {
+    const count = ENTRIES.filter(e => e.cat === k).length;
+    html += `<button class="filter-btn" onclick="setFilter('${k}',this)">${v.label} (${count})</button>`;
+  }
+  bar.innerHTML = html;
+}
+
+function setFilter(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterEntries();
+}
+
+function filterEntries() {
+  const q = document.getElementById('regSearch').value.toLowerCase();
+  const filtered = ENTRIES.filter(e => {
+    const matchCat = activeFilter === 'all' || e.cat === activeFilter;
+    const matchQ = !q || e.c.toLowerCase().includes(q) || e.d.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  const list = document.getElementById('entryList');
+  list.innerHTML = filtered.map((e, i) => {
+    const cat = CATS[e.cat];
+    return `<div class="entry-row">
+      <span class="entry-code">${e.c}</span>
+      <span class="entry-desc">${e.d}</span>
+      <span class="badge" style="background:${cat.color}15;color:${cat.color}">${cat.label.split(' ')[0]}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('regCount').textContent = `${filtered.length} / 100 entries`;
+}
+
+// === RENDER TAXONOMY BARS ===
+function renderTaxBars() {
+  const el = document.getElementById('taxBars');
+  const sorted = Object.entries(CATS).map(([k, v]) => ({
+    ...v, key: k, count: ENTRIES.filter(e => e.cat === k).length
+  })).sort((a, b) => b.count - a.count);
+
+  el.innerHTML = sorted.map(c => `
+    <div class="card card-sm" style="margin-bottom:6px;padding:10px 14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:11px;font-weight:600">${c.label}</span>
+        <span style="font-size:13px;font-weight:700;color:${c.color};font-variant-numeric:tabular-nums">${c.count}</span>
+      </div>
+      <div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden">
+        <div style="height:100%;width:${c.count}%;background:${c.color};border-radius:2px;transition:width .5s"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// === RENDER MINI ARCHITECTURE ===
+function renderMiniArch() {
+  const el = document.getElementById('miniArch');
+  const layers = [
+    {l:'L4',n:'Orchestrare',c:'var(--gold)'},
+    {l:'L3',n:'Securitate',c:'var(--blue)'},
+    {l:'L2',n:'Verificare',c:'var(--green)'},
+    {l:'L1',n:'Detecție',c:'var(--text-2)'},
+    {l:'L0',n:'Blockchain',c:'var(--text-3)'},
+  ];
+  el.innerHTML = layers.map(ly => `
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 8px;border-left:2px solid ${ly.c};background:var(--surface-2);border-radius:0 4px 4px 0">
+      <span style="font-family:var(--mono);font-size:9px;color:var(--text-3);min-width:20px">${ly.l}</span>
+      <span style="font-size:11px;font-weight:600;color:${ly.c}">${ly.n}</span>
+    </div>
+  `).join('');
+}
+
+// === RENDER AGENT CARDS ===
+function renderAgents() {
+  const el = document.getElementById('agentCards');
+  el.innerHTML = AGENTS.map(a => `
+    <div class="card card-sm">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;font-size:13px;color:${a.color}">${a.name}</span>
+        <span class="badge" style="background:var(--surface-3);color:var(--text-3)">${a.layer}</span>
+      </div>
+      <div style="font-size:11px;color:var(--text-2);line-height:1.4">${a.role}</div>
+    </div>
+  `).join('');
+}
+
+// === RENDER ECOSYSTEM ===
+function renderEco() {
+  const el = document.getElementById('ecoGrid');
+  el.innerHTML = ECO.map(p => `
+    <div class="eco-card">
+      <div class="eco-name">${p.name}</div>
+      <div class="eco-domain">${p.domain}</div>
+      <div class="eco-desc">${p.desc}</div>
+    </div>
+  `).join('');
+}
+
+// === INIT ===
+renderFilters();
+filterEntries();
+renderTaxBars();
+renderMiniArch();
+renderAgents();
+renderEco();
+</script>
+</body>
+</html>
