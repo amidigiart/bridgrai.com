@@ -5,5 +5,5 @@ Disallow: /index-legacy.html
 Sitemap: https://bridgrai.com/sitemap.xml
 
 # BRIDGRAI — Verifiable Trust Infrastructure
-# 101 IP entries on Tezos blockchain
+# 128 IP assets on Tezos blockchain
 # Contact: mihairosca1982@gmail.com

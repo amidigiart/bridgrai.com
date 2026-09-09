@@ -296,10 +296,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   <div class="page-desc" data-t="dash_desc">Ecosistemul BRIDGRAI — 3,5 ani de cercetare independentă, zero finanțare externă. Fiecare hash e verificabil, fiecare linie de cod e publică.</div>
 
   <div class="grid-4" style="margin-bottom:20px">
-    <div class="card kpi gold"><div class="kpi-val">101</div><div class="kpi-label" data-t="kpi_ip">IP Entries</div></div>
-    <div class="card kpi blue"><div class="kpi-val">9</div><div class="kpi-label" data-t="kpi_agents">A2A Agents</div></div>
-    <div class="card kpi green"><div class="kpi-val">11</div><div class="kpi-label" data-t="kpi_products">SaaS Products</div></div>
-    <div class="card kpi gold"><div class="kpi-val">2</div><div class="kpi-label" data-t="kpi_paradigms">Paradigme Noi</div></div>
+    <div class="card kpi gold"><div class="kpi-val">128</div><div class="kpi-label" data-t="kpi_ip">IP Assets</div></div>
+    <div class="card kpi blue"><div class="kpi-val">13</div><div class="kpi-label" data-t="kpi_components">Components</div></div>
+    <div class="card kpi green"><div class="kpi-val">20</div><div class="kpi-label" data-t="kpi_products">SaaS Products</div></div>
+    <div class="card kpi gold"><div class="kpi-val">3</div><div class="kpi-label" data-t="kpi_paradigms">Paradigme Noi</div></div>
   </div>
 
   <div class="grid-2">
@@ -339,7 +339,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <tr><td>Blockchain Provenance</td><td class="cmp-y">✓ Tezos</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
       <tr><td data-t="cmp_cognitive">Detecție Nevoi Cognitive</td><td class="cmp-y">✓ Maestru</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-p">~</td><td class="cmp-p">~</td></tr>
       <tr><td>Kuramoto Physics</td><td class="cmp-y">✓</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
-      <tr><td data-t="cmp_ip">IP pe Blockchain</td><td class="cmp-y">✓ 101</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
+      <tr><td data-t="cmp_ip">IP pe Blockchain</td><td class="cmp-y">✓ 128</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td><td class="cmp-n">✗</td></tr>
     </table>
     </div>
   </div>
@@ -348,7 +348,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 <!-- ====== REGISTRY ====== -->
 <div class="view" id="v-registry">
   <div class="page-title" data-t="reg_title">Registrul IP</div>
-  <div class="page-desc" data-t="reg_desc">101 de active intelectuale înregistrate pe Tezos blockchain. Fiecare cu SHA-256 hash și timestamp imutabil.</div>
+  <div class="page-desc" data-t="reg_desc">128 de active intelectuale înregistrate pe Tezos blockchain. Fiecare cu SHA-256 hash și timestamp imutabil.</div>
   <div class="search-wrap">
     <input class="search-box" type="text" placeholder="Caută entry..." id="regSearch" oninput="filterEntries()">
   </div>
@@ -408,7 +408,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 <!-- ====== PARADIGMS ====== -->
 <div class="view" id="v-paradigms">
   <div class="page-title" data-t="par_title">Paradigme Noi</div>
-  <div class="page-desc" data-t="par_desc">Două concepte fundamentale descoperite prin construcție practică, nu prin teorie. Înregistrate pe Tezos, fiecare cu provenance chain completă.</div>
+  <div class="page-desc" data-t="par_desc">Trei paradigme fundamentale descoperite prin construcție practică, nu prin teorie. Înregistrate pe Tezos, fiecare cu provenance chain completă. Două publicate cu DOI pe Zenodo.</div>
 
   <div class="grid-2" style="margin-bottom:20px">
     <div class="paradigm-card">
@@ -416,7 +416,21 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div class="paradigm-title">CAMP: Cognitive Arbitration Mediation Protocol</div>
       <div class="paradigm-body" data-t="camp_body">Protocol vendor-neutral pentru verificarea încrederii, rezolvarea conflictelor și menținerea provenienței în ecosisteme AI multi-provider. 4 funcții formale: arbitraj, mediere, certificare, ancorare proveniență. Nu e promisiune — e verificare independentă a sensului și intenției.</div>
       <div class="paradigm-stack">Agent de Sens → Concordance → HASN → Tezos → Arbitration</div>
-      <div class="paradigm-credit" data-t="camp_credit">Descoperit de Mihai Roșca · Spiru Haret, Brăila · 2026</div>
+      <div class="paradigm-credit" data-t="camp_credit">Descoperit de Mihai Roșca · Spiru Haret, Brăila · 2026 · <a href="https://github.com/amidigiart/camp-protocol" target="_blank" rel="noopener" style="color:var(--blue)">GitHub</a></div>
+    </div>
+    <div class="paradigm-card">
+      <div class="paradigm-id">#98 — NOTAR-DE-SENS</div>
+      <div class="paradigm-title">Notar de Sens și Intenție</div>
+      <div class="paradigm-body" data-t="notar_body">Certificarea sensului ȘI intenției, nu doar a existenței. Stack complet: Agent de Sens (TVE 6-pillar) + Concordance multi-agent + Hash pe Tezos. Nimeni altcineva nu are acest pipeline end-to-end.</div>
+      <div class="paradigm-stack">TVE 6-pillar → Agent de Sens → Concordance → Tezos</div>
+      <div class="paradigm-credit" data-t="notar_credit">Descoperit de Mihai Roșca · Spiru Haret, Brăila · 2024</div>
+    </div>
+    <div class="paradigm-card">
+      <div class="paradigm-id">KCE — KNOWLEDGE-CONTINUITY-ENGINEERING</div>
+      <div class="paradigm-title">KCE: Knowledge Continuity Engineering</div>
+      <div class="paradigm-body" data-t="kce_body">Disciplină nouă — ingineria continuității cunoașterii. Asigură că sistemele AI păstrează, verifică și transmit cunoștințe între generații, sesiuni și agenți. BRIDGRAI = prima implementare.</div>
+      <div class="paradigm-stack">Provenance Chain → Heritage Agent → Blockchain Anchoring → Transgenerational</div>
+      <div class="paradigm-credit" data-t="kce_credit">Fondată de Mihai Roșca · 9 sept 2026 · DOI: <a href="https://doi.org/10.5281/zenodo.22667873" target="_blank" rel="noopener" style="color:var(--blue)">10.5281/zenodo.22667873</a></div>
     </div>
   </div>
 
@@ -454,7 +468,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     </div>
     <div style="font-family:var(--mono);font-size:11px;color:var(--blue);word-break:break-all;margin-bottom:14px">KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-      <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--gold)">101</div><div style="font-size:10px;color:var(--text-3)">ENTRIES</div></div>
+      <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--gold)">128</div><div style="font-size:10px;color:var(--text-3)">ASSETS</div></div>
       <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--green)">2</div><div style="font-size:10px;color:var(--text-3)">MASTER HASHES</div></div>
       <div style="text-align:center"><div style="font-size:24px;font-weight:700;color:var(--blue)">∞</div><div style="font-size:10px;color:var(--text-3)" data-t="bc_immutable">IMUTABIL</div></div>
     </div>
@@ -470,8 +484,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
     SHA-256 · Tezos mainnet · timestamp imutabil
   </div>
   <div class="hash-card">
-    <div class="hash-label">Master Hash v3 — Arhive + Ground Zero + A2A (101 entries) <span class="hash-status hash-pending">PENDING</span></div>
-    <span data-t="bc_v3_note">Se va înregistra după confirmarea on-chain a entries #66-101</span>
+    <div class="hash-label">Master Hash v3 — Arhive + Ground Zero + A2A (128 assets) <span class="hash-status hash-pending">PENDING</span></div>
+    <span data-t="bc_v3_note">Se va înregistra după confirmarea on-chain a entries #66-128</span>
   </div>
 
   <div class="section-head" data-t="bc_how">Cum Verifici</div>
@@ -655,28 +669,30 @@ const T = {
     dash_title:'Command Center', dash_desc:'The BRIDGRAI ecosystem — 3.5 years of independent research, zero external funding. Every hash is verifiable, every line of code is public.',
     dash_taxonomy:'IP Taxonomy', dash_layers:'Architecture Layers', dash_proof:'Blockchain Verification',
     dash_active:'ACTIVE', dash_pending:'PENDING', dash_competitive:'Competitive Edge',
-    kpi_ip:'IP Entries', kpi_agents:'A2A Agents', kpi_products:'SaaS Products', kpi_paradigms:'New Paradigms',
+    kpi_ip:'IP Assets', kpi_components:'Components', kpi_products:'SaaS Products', kpi_paradigms:'New Paradigms',
     cmp_cap:'Capability', cmp_meaning:'Meaning Verification', cmp_intent:'Intent Verification',
     cmp_cognitive:'Cognitive Need Detection', cmp_ip:'IP on Blockchain',
-    reg_title:'IP Registry', reg_desc:'101 intellectual property assets registered on Tezos blockchain. Each with SHA-256 hash and immutable timestamp.',
-    ag_title:'Agent-to-Agent Architecture', ag_desc:'9 autonomous agents on Google A2A protocol (JSON-RPC 2.0), organized across 5 abstraction layers. Maestru Agent orchestrates cognitively, not just routes.',
+    reg_title:'IP Registry', reg_desc:'128 intellectual property assets registered on Tezos blockchain. Each with SHA-256 hash and immutable timestamp.',
+    ag_title:'Agent-to-Agent Architecture', ag_desc:'13 components (5 engines + 8 agents) on Google A2A protocol (JSON-RPC 2.0), organized across 5 abstraction layers. Maestru Agent orchestrates cognitively, not just routes.',
     ag_detail:'Agent Details',
     l4_name:'Cognitive Orchestration', l3_name:'Security & Heritage', l2_name:'Verification & Calibration',
     l1_name:'Detection & Resonance', l0_name:'Existence — Blockchain',
-    par_title:'New Paradigms', par_desc:'Two fundamental concepts discovered through practical construction, not theory. Registered on Tezos, each with complete provenance chain.',
-    taas_body:'Trust is NOT a promise, it is a VERIFIABLE SERVICE. Each verdict has hash, timestamp and provenance chain. Not a reputation system, not voting — independent verification of meaning and intent.',
-    caas_body:'NOT an API call, it is COGNITIVE ORCHESTRATION. Maestru Agent detects what NEEDS to be done (not what is asked), builds optimal pipeline from 9 agents, executes with confidence scoring and provenance chain.',
-    taas_credit:'Discovered by Mihai Roșca · Spiru Haret, Brăila · July 24, 2026',
-    caas_credit:'Discovered by Mihai Roșca · Spiru Haret, Brăila · July 24, 2026',
+    par_title:'New Paradigms', par_desc:'Three fundamental paradigms discovered through practical construction, not theory. Registered on Tezos, each with complete provenance chain. Two published with DOI on Zenodo.',
+    camp_body:'Vendor-neutral protocol for trust verification, conflict resolution, and provenance maintenance across multi-provider AI ecosystems. 4 formal functions: arbitration, mediation, certification, provenance anchoring. Not a promise — independent verification of meaning and intent.',
+    camp_credit:'Discovered by Mihai Roșca · Spiru Haret, Brăila · 2026 · <a href="https://github.com/amidigiart/camp-protocol" target="_blank" rel="noopener" style="color:var(--blue)">GitHub</a>',
+    notar_body:'Certification of meaning AND intent, not just existence. Full stack: Agent de Sens (TVE 6-pillar) + multi-agent Concordance + Hash on Tezos. Nobody else has this end-to-end pipeline.',
+    notar_credit:'Discovered by Mihai Roșca · Spiru Haret, Brăila · 2024',
+    kce_body:'New discipline — Knowledge Continuity Engineering. Ensures AI systems preserve, verify, and transmit knowledge across generations, sessions, and agents. BRIDGRAI = first implementation.',
+    kce_credit:'Founded by Mihai Roșca · Sept 9, 2026 · DOI: <a href="https://doi.org/10.5281/zenodo.22667873" target="_blank" rel="noopener" style="color:var(--blue)">10.5281/zenodo.22667873</a>',
     par_diff:'What Sets BRIDGRAI Apart', par_others:'Other Orchestrators',
     par_r1:'What does it do?', par_r1a:'Detects NEEDS, not just routes', par_r1b:'Rule-based dispatch',
     par_r2:'How does it verify?', par_r2a:'Meaning + Intent + Concordance', par_r2b:'No epistemic verification',
     par_r3:'How does it prove?', par_r3a:'Hash on Tezos, provenance chain', par_r3b:'Internal logs, optional audit',
     par_r4:'Physics?', par_r4a:'Kuramoto — phase synchronization', par_r4b:'No physics model',
     par_r5:'Transparency?', par_r5a:'Concordance % publicly visible', par_r5b:'Black box',
-    eco_title:'The ami* Ecosystem', eco_desc:'11 SaaS products built on a single shared engine (SharedAIEngine). Each product serves a specific niche, all share HASN security and TVE verification.',
+    eco_title:'The ami* Ecosystem', eco_desc:'20 SaaS products built on a single shared engine (SharedAIEngine). Each product serves a specific niche, all share HASN security and TVE verification.',
     bc_title:'Blockchain Proof', bc_desc:'All intellectual property assets registered on Tezos mainnet. SHA-256 hash, immutable timestamp, verifiable by anyone, forever.',
-    bc_live:'LIVE', bc_immutable:'IMMUTABLE', bc_v3_note:'Will be registered after on-chain confirmation of entries #66-101',
+    bc_live:'LIVE', bc_immutable:'IMMUTABLE', bc_v3_note:'Will be registered after on-chain confirmation of entries #66-128',
     bc_how:'How to Verify',
     bc_s1:'Open the <a href="https://tzkt.io/KT1Pe2GA11bMpaTL5VH4TY6aZ9xePZ6f5vWX" style="color:var(--blue)" target="_blank" rel="noopener">contract on TzKT</a>',
     bc_s2:'Check the storage — each entry has a SHA-256 hash',
@@ -701,7 +717,7 @@ let activeFilter = 'all';
 
 function renderFilters() {
   const bar = document.getElementById('filterBar');
-  let html = '<button class="filter-btn active" onclick="setFilter(\'all\',this)">Toate (101)</button>';
+  let html = '<button class="filter-btn active" onclick="setFilter(\'all\',this)">Toate (128)</button>';
   for (const [k, v] of Object.entries(CATS)) {
     const count = ENTRIES.filter(e => e.cat === k).length;
     html += `<button class="filter-btn" onclick="setFilter('${k}',this)">${v.label} (${count})</button>`;
@@ -732,7 +748,7 @@ function filterEntries() {
       <span class="badge" style="background:${cat.color}15;color:${cat.color}">${cat.label.split(' ')[0]}</span>
     </div>`;
   }).join('');
-  document.getElementById('regCount').textContent = `${filtered.length} / 101 entries`;
+  document.getElementById('regCount').textContent = `${filtered.length} / 128 assets`;
 }
 
 // === RENDER TAXONOMY BARS ===
