@@ -224,7 +224,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
   <div class="market-grid">
     <div class="market-card left">
       <div class="m-big" style="color:var(--text3)">$77B</div>
-      <div class="m-label" data-i="mk_existing">Existing CaaS Market (2026)</div>
+      <div class="m-label" data-i="mk_existing">Existing Cognitive Services Market (2026)</div>
       <div class="m-desc" data-i="mk_existing_desc">API calls to cognitive services: NLP, vision, speech, search. Processes data, returns output. Zero verification of meaning or intention. "Trust us" — promise, not proof.</div>
     </div>
     <div class="market-card right">
@@ -241,7 +241,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
       <div class="gi-check">BRIDGRAI only</div>
     </div>
     <div class="gap-item">
-      <div class="gi-title" data-i="g2t">Trust as a Service</div>
+      <div class="gi-title" data-i="g2t">CAMP Protocol</div>
       <div class="gi-desc" data-i="g2d">Verifiable, not promised</div>
       <div class="gi-check">BRIDGRAI only</div>
     </div>
@@ -398,7 +398,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:
         <tr><td data-i="cmp_r5">Blockchain provenance</td><td class="highlight yes">Tezos mainnet</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
         <tr><td data-i="cmp_r6">Physics-based sync (Kuramoto)</td><td class="highlight yes">Adler/Kuramoto</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
         <tr><td data-i="cmp_r7">Child safety on-chain</td><td class="highlight yes">Meta-Consens AGIK</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
-        <tr><td data-i="cmp_r8">Trust as a Service</td><td class="highlight yes">TaaS paradigm</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+        <tr><td data-i="cmp_r8">CAMP Protocol</td><td class="highlight yes">Arbitration, mediation, certification</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
         <tr><td data-i="cmp_r9">Anti-confabulation</td><td class="highlight yes">Dual-model Amidor</td><td class="no">No</td><td class="partial">RAG only</td><td class="partial">Partial</td><td class="no">No</td></tr>
         <tr><td data-i="cmp_r10">IP on blockchain</td><td class="highlight yes">101 entries</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
       </tbody>
@@ -551,8 +551,7 @@ const ENTRIES = [
   {n:96,code:"POSTGRESQL-SCHEMA",cat:"a2a",desc:"PostgreSQL 16+ schema for certification"},
   {n:97,code:"CCL-FLAGS",cat:"a2a",desc:"Certification compliance level flags"},
   {n:98,code:"NOTAR-DE-SENS",cat:"paradigm",desc:"Notary of Meaning and Intention — core concept"},
-  {n:99,code:"TRUST-AS-A-SERVICE",cat:"paradigm",desc:"TaaS — trust as verifiable service, not promise"},
-  {n:100,code:"COGNITIVE-AS-A-SERVICE",cat:"paradigm",desc:"CaaS — cognitive orchestration, not API call"},
+  {n:99,code:"CAMP-PROTOCOL",cat:"paradigm",desc:"CAMP — Cognitive Arbitration Mediation Protocol"},
   {n:101,code:"META-CONSENS-AGIK",cat:"a2a",desc:"Tezos smart contract for multi-agent child safety consensus"}
 ];
 
@@ -568,10 +567,10 @@ const I18N = {
     proof_zero:"Zero External Funding",
     mk_label:"Market Position",mk_title:"The $77B Trust Gap",
     mk_sub:"The cognitive services market processes data. Nobody verifies the meaning. BRIDGRAI doesn't compete with the market — it adds the layer the entire market is missing.",
-    mk_existing:"Existing CaaS Market (2026)",mk_projected:"Projected 2033 (CAGR 31.54%)",
+    mk_existing:"Existing Cognitive Services Market (2026)",mk_projected:"Projected 2033 (CAGR 31.54%)",
     mk_existing_desc:'API calls to cognitive services: NLP, vision, speech, search. Processes data, returns output. Zero verification of meaning or intention. "Trust us" — promise, not proof.',
     mk_projected_desc:"Every cognitive service in the world needs a trust layer. BRIDGRAI provides verifiable meaning certification, transparent concordance, and blockchain provenance. We don't sell AI. We sell TRUST IN AI.",
-    g1t:"Epistemic Verification",g1d:"TVE 6-pillar",g2t:"Trust as a Service",g2d:"Verifiable, not promised",
+    g1t:"Epistemic Verification",g1d:"TVE 6-pillar",g2t:"CAMP Protocol",g2d:"Verifiable, not promised",
     g3t:"Concordance %",g3d:"Transparent agreement",g4t:"Blockchain Proof",g4d:"Tezos immutable",
     g5t:"Kuramoto Physics",g5d:"Phase synchronization",g6t:"Child Safety Override",g6d:"1 BLOCK = absolute",
     ag_label:"A2A Architecture",ag_title:"9 Agents. 5 Layers. 1 Trust Layer.",
@@ -605,10 +604,10 @@ const I18N = {
     proof_zero:"Zero Finanțare Externă",
     mk_label:"Poziție pe Piață",mk_title:"Golul de Încredere de $77B",
     mk_sub:"Piața serviciilor cognitive procesează date. Nimeni nu verifică sensul. BRIDGRAI nu concurează cu piața — adaugă stratul care lipsește întregii piețe.",
-    mk_existing:"Piața CaaS Existentă (2026)",mk_projected:"Proiecție 2033 (CAGR 31,54%)",
+    mk_existing:"Piața Serviciilor Cognitive (2026)",mk_projected:"Proiecție 2033 (CAGR 31,54%)",
     mk_existing_desc:'Apeluri API la servicii cognitive: NLP, viziune, speech, căutare. Procesează date, returnează output. Zero verificare a sensului sau intenției. „Ai încredere în noi" — promisiune, nu dovadă.',
     mk_projected_desc:"Fiecare serviciu cognitiv din lume are nevoie de un strat de trust. BRIDGRAI oferă certificare verificabilă a sensului, concordanță transparentă și proveniență pe blockchain. Nu vindem AI. Vindem ÎNCREDEREA ÎN AI.",
-    g1t:"Verificare Epistemică",g1d:"TVE 6-pillar",g2t:"Trust as a Service",g2d:"Verificabil, nu promis",
+    g1t:"Verificare Epistemică",g1d:"TVE 6-pillar",g2t:"CAMP Protocol",g2d:"Verificabil, nu promis",
     g3t:"Concordanță %",g3d:"Acord transparent",g4t:"Dovadă Blockchain",g4d:"Tezos imutabil",
     g5t:"Fizică Kuramoto",g5d:"Sincronizare de fază",g6t:"Override Siguranță Copii",g6d:"1 BLOCK = absolut",
     ag_label:"Arhitectură A2A",ag_title:"9 Agenți. 5 Straturi. 1 Strat de Încredere.",
